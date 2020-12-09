@@ -146,7 +146,7 @@ span {
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
     color: #fff;
-    background: #091840;
+    background: #1d3472;
 }
 
 a[data-toggle="collapse"] {
@@ -164,7 +164,7 @@ a[data-toggle="collapse"] {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #1d3472;
+    background: #091840;
 }
 
 ul.CTAs {
