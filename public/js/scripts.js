@@ -81,7 +81,7 @@
 		   // static labels
 		   staticLabels: {
 			font: "10px sans-serif",
-			labels: [15, 20, 25, 30, 50],
+			labels: [0, 15, 20, 25, 30, 50],
 			fractionDigits: 0
 		  },
 		   // static zones
@@ -190,27 +190,33 @@
 		  highDpiSupport: true
     };
     
-	var target = document.getElementById('gauge_temperature');
-	var gauge = new Gauge(target).setOptions(opts_temperature);
+	var target_temperature = document.getElementById('gauge_temperature');
+	var gauge_temperature = new Gauge(target_temperature).setOptions(opts_temperature);
 	document.getElementById("preview-textfield").className = "preview-textfield";
-    gauge.setTextField(document.getElementById("preview-textfield"));
+    gauge_temperature.setTextField(document.getElementById("preview-textfield"));
     
-	gauge.maxValue = 50;
-	gauge.setMinValue(0);
-	gauge.set(20);
-	
-    gauge.animationSpeed = 32
+	gauge_temperature.maxValue = 50;
+	gauge_temperature.setMinValue(0);
+    gauge_temperature.set(20);
+    gauge_temperature.animationSpeed = 32
 
-    var target = document.getElementById('gauge_humidity');
-	var gauge = new Gauge(target).setOptions(opts_humidity);
+    /////測試調整溫度按鈕
+    $(".submit_temperature").click(function () {
+        gauge_temperature.set($("#input_temperature").val());
+    });
+	/////
+
+    var target_humidity = document.getElementById('gauge_humidity');
+	var gauge_humidity = new Gauge(target_humidity).setOptions(opts_humidity);
 	document.getElementById("preview-textfield2").className = "preview-textfield2";
-	gauge.setTextField(document.getElementById("preview-textfield2"));
-	gauge.maxValue = 100;
-	gauge.setMinValue(0);
-	gauge.set(50);
+	gauge_humidity.setTextField(document.getElementById("preview-textfield2"));
+	gauge_humidity.maxValue = 100;
+	gauge_humidity.setMinValue(0);
+	gauge_humidity.set(50);
 	
-    gauge.animationSpeed = 32
+    gauge_humidity.animationSpeed = 32
     ///////////////////////////////////////
+   
 
 
 })(jQuery); // End of use strict
