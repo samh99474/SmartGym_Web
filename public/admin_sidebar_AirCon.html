@@ -21,6 +21,10 @@
     <!-- Core theme CSS (includes Bootstrap) For sidebar-->
     <link rel="stylesheet" href="./CSS/sidebar.css">
 
+    <!-- bootstrap4-toggle Switch-->
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+        rel="stylesheet" />
+
     <!-- Gauge.js-->
     <script src="./js/gauge.js"></script>
 </head>
@@ -157,13 +161,15 @@
                         <div class="col-lg-6 py-4 text-center">
                             <h4>溫度</h4>
                             <canvas id="gauge_temperature"></canvas>
-                            <div id="preview-textfield"></div><div>度C</div>
+                            <div id="preview-textfield"></div>
+                            <div>度C</div>
                         </div>
 
                         <div class="col-lg-6 py-4 text-center">
                             <h4>濕度</h4>
                             <canvas id="gauge_humidity"></canvas>
-                            <div id="preview-textfield2"></div><div>%</div>
+                            <div id="preview-textfield2"></div>
+                            <div>%</div>
                         </div>
                     </div>
                 </div>
@@ -174,11 +180,7 @@
 
             <section class="page-section" id="section_switch">
                 <h2>空調開關</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.</p>
+                <input type="checkbox" checked data-toggle="toggle" data-on="開啟" data-off="關閉" data-onstyle="success" data-offstyle="danger">
 
                 <div class="line"></div>
             </section>
@@ -239,6 +241,13 @@
     <script src="assets/mail/contact_me.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
+
+    <!-- bootstrap4-toggle Switch-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.6.3/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.6.3/umd/react-dom.production.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
     <!-- SlideBar Acive-->
     <script type="text/javascript">
