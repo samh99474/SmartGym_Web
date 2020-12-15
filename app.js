@@ -9,6 +9,8 @@ var usersRouter = require('./routes/users');
 //
 var testRouter = require('./routes/test');
 
+var CreateSensorRouter = require('./routes/CreateSensor');
+
 var app = express();
 
 // view engine setup
@@ -27,6 +29,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 //
 app.use('/test', testRouter);
+
+app.use('/CreateSensor', CreateSensorRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
