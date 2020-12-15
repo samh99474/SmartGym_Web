@@ -216,7 +216,5 @@
 	
     gauge_humidity.animationSpeed = 32
     ///////////////////////////////////////
-   
-
 
 })(jQuery); // End of use strict
