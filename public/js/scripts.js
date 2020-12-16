@@ -62,6 +62,24 @@ $(document).ready(function () {
         }
     });
 
+
+
+    $("#submit_postMachine_Use").click(function(){
+        $.ajax('/CreateContent',   // request url
+            {
+                method:"POST",
+                data:{"input_postMachine_Use": $("#input_postMachine_Use").val(),
+                      "input_postMachine_descriptor_Use": $("#input_postMachine_descriptor_Use").val() },
+                      success: function (data, status, xhr) {// success callback function
+                        alert("成功新增" + "，" + data + "，" + status+ "，" + xhr)
+                    },
+                    error: function (data, status, xhr) {
+                        alert("失敗新增，可能重複輸入已存在之項目" + "，" + data + "，" + status+ "，" + xhr)
+                    }
+        });
+
+    });
+
 });
 
 (function ($) {
