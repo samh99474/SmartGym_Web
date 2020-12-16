@@ -20,6 +20,12 @@
 
     <!-- Core theme CSS (includes Bootstrap) For sidebar-->
     <link rel="stylesheet" href="./CSS/sidebar.css">
+
+    <!-- Ajax om2m-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
 </head>
 
 <body id="page-top">
@@ -169,14 +175,21 @@
                     <div class="row align-items-left">
                         <section class="page-section col-lg-6" id="section_adjust">
                             <h2>新增設備</h2>
-                            
-                                <div class="form-group w-25">
-                                    <label for="value">新增設備名稱</label>
+
+                            <div class="form-group w-50">
+                                <form>
+                                    <label class="pt-4 mb-0 font-weight-bold" for="value">新增設備名稱:</label>
+                                    <small id="samall_postMachine" class="form-text text-muted samall_postMachine">請輸入欲新增之設備名稱</small>
                                     <input id="input_postMachine" type="text" name="input_postMachine" required="required">
-                                    <small id="samall_postMachine" class="form-text text-muted">請輸入欲新增之設備名稱</small>
-                                </div>
-                            
-                            <button type="submit_postMachine" id="submit_postMachine" class="btn btn-primary submit_postMachine">立即新增設備</button>
+    
+                                    <label class="pt-4 mb-0 font-weight-bold" for="value">新增設備名稱之Descriptor:</label>
+                                    <small id="samall_postMachine_descriptor" class="form-text text-muted">請輸入欲新增之設備Descriptor</small>
+                                    <input id="input_postMachine_descriptor" type="text" name="input_postMachine_descriptor">
+    
+                                    <button type="submit_postMachine" id="submit_postMachine"
+                                    class="btn btn-primary mt-4 submit_postMachine">立即新增設備</button>
+                                </form>
+                            </div>
                         </section>
 
                         <section class="page-section col-lg-6" id="section_adjust">
@@ -184,15 +197,17 @@
                             <form>
                                 <div class="form-group w-25">
                                     <label for="value">刪除設備名稱</label>
-                                    <input id="input_deleteMachine" type="text" name="input_deleteMachine" required="required">
+                                    <input id="input_deleteMachine" type="text" name="input_deleteMachine"
+                                        required="required">
                                     <small id="samall_deleteMachine" class="form-text text-muted">請輸入欲刪除之設備名稱</small>
                                 </div>
                             </form>
-                            <button type="submit_deleteMachine" id="submit_deleteMachine" class="btn btn-primary submit_deleteMachine">立即刪除設備</button>
+                            <button type="submit_deleteMachine" id="submit_deleteMachine"
+                                class="btn btn-primary submit_deleteMachine">立即刪除設備</button>
                         </section>
 
                     </div>
-    
+
                 </div>
 
                 <div class="line"></div>
@@ -239,24 +254,6 @@
     <!-- Contact form JS-->
     <script src="assets/mail/jqBootstrapValidation.js"></script>
     <script src="assets/mail/contact_me.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $("#submit_postMachine").click(function(){
-                $.ajax('/CreateSensor',   // request url
-                    {
-                        method:"POST",
-                        data:{"input_postMachine": $("#input_postMachine").val() },
-                        success: function (data, status, xhr) {// success callback function
-                            $('#submit_postMachine').append(data);
-                    }
-                });
-            });
-        });
-    </script>
 
     <!-- SlideBar Acive-->
     <script type="text/javascript">
@@ -266,7 +263,7 @@
             });
         });
     </script>
-        <script src="js/scripts.js"></script>
+
 
 </body>
 
