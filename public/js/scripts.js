@@ -103,6 +103,7 @@ $(document).ready(function () {
             }
         });
     });
+    
     $("#submit_inquiryMachine_Contentinstance").click(function(){
         $.ajax('/GetSensorDescriptorData',   // request url
             {
