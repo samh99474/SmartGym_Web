@@ -73,6 +73,23 @@ $(document).ready(function () {
         });
     });
 
+    $("#submit_inquiryMachine_Use").click(function(){
+        $.ajax('/GetSensor',   // request url
+            {
+                method:"GET",
+                success: function (data, status, xhr) {// success callback function
+                
+                    var tableData
+                    //動態增加5個td,並且把data陣列的五個值賦給每個td
+                    for(var i=0;i<data.length;i++){
+                    tableData+="<tr>"+"<td>"+data[i]+"</td>"+"</tr>"
+                    }
+                    //現在tableData已經生成好了，把他賦值給上面的tbody
+                    $("#tbody1").html(tableData)                      
+            }
+        });
+    });
+
 
     $("#submit_postMachine_Use").click(function(){
         $.ajax('/CreateContent',   // request url
