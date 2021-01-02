@@ -15,6 +15,14 @@ var CreateDescriptorRouter = require('./routes/CreateDescriptor');
 
 var CreateContentRouter = require('./routes/CreateContent');
 
+var DeleteSensorRouter = require('./routes/DeleteSensor');
+
+var GetSensorRouter = require('./routes/GetSensor');
+
+var GetSensorDescriptorRouter = require('./routes/GetSensorDescriptor');
+
+var GetSensorDescriptorDataRouter = require('./routes/GetSensorDescriptorData');
+
 var app = express();
 
 // view engine setup
@@ -39,6 +47,14 @@ app.use('/CreateSensor', CreateSensorRouter);
 app.use('/CreateDescriptor', CreateDescriptorRouter);
 
 app.use('/CreateContent', CreateContentRouter);
+
+app.use('/DeleteSensor', DeleteSensorRouter);
+
+app.use('/GetSensor', GetSensorRouter);
+
+app.use('/GetSensorDescriptor', GetSensorDescriptorRouter);
+
+app.use('/GetSensorDescriptorData', GetSensorDescriptorDataRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

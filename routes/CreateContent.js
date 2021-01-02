@@ -30,6 +30,7 @@ function creat_DESCRIPTOR_contentInstance(AEname,DCname){
               &lt;str name=&quot;type&quot; val=&quot;Temperature_Sensor&quot;/&gt;
               &lt;str name=&quot;location&quot; val=&quot;Home&quot;/&gt;
               &lt;str name=&quot;appId&quot; val=&quot;MY_SENSOR&quot;/&gt;
+              &lt;int name=&quot;TimesOfUse&quot; val=&quot;0&quot;/&gt;
               &lt;op name=&quot;getValue&quot; href=&quot;/in-cse/in-name/MY_SENSOR/DATA/la&quot;
            in=&quot;obix:Nil&quot; out=&quot;obix:Nil&quot; is=&quot;retrieve&quot;/&gt;
           &lt;/obj&gt;

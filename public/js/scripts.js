@@ -72,6 +72,7 @@ $(document).ready(function () {
   });
 
 
+
     $("#submit_postMachine").click(function () {
         if ($('#input_postMachine').val().length == 0) {
             alert("請輸欲新增之裝置名稱")
@@ -126,9 +127,64 @@ $(document).ready(function () {
             }
         }
     });
+    $("#submit_deleteMachine").click(function(){
+        $.ajax('/DeleteSensor',   // request url
+            {
+                method:"POST",
+                data:{"input_deleteMachine": $("#input_deleteMachine").val()},
+                success: function (data, status, xhr) {// success callback function
+                    $('p').append(data);
+            }
+        });
+    });
 
-
-
+    $("#submit_inquiryMachine_Use").click(function(){
+        $.ajax('/GetSensor',   // request url
+            {
+                method:"GET",
+                success: function (data, status, xhr) {// success callback function
+                    var tableData
+                    //動態增加5個td,並且把data陣列的五個值賦給每個td
+                    for(var i=0;i<data.length;i++){
+                    tableData+="<tr>"+"<td>"+data[i]+"</td>"+"</tr>"
+                    }
+                    //現在tableData已經生成好了，把他賦值給上面的tbody
+                    $("#tbody1").html(tableData)                      
+            }
+        });
+    });
+    $("#submit_inquiryMachine_Data").click(function(){
+        $.ajax('/GetSensorDescriptor',   // request url
+            {
+                method:"GET",
+                data:{"input_inquiryMachine_Use": $("#input_inquiryMachine_Use").val() },
+                success: function (data, status, xhr) {// success callback function
+                    var tableData
+                    for(var i=0;i<data.length;i++){
+                    tableData+="<tr>"+"<td>"+data[i]+"</td>"+"</tr>"
+                    }
+                    //現在tableData已經生成好了，把他賦值給上面的tbody
+                    $("#tbody1").html(tableData)                      
+            }
+        });
+    });
+    
+    $("#submit_inquiryMachine_Contentinstance").click(function(){
+        $.ajax('/GetSensorDescriptorData',   // request url
+            {
+                method:"GET",
+                data:{"input_inquiryMachine_descriptor_Use": $("#input_inquiryMachine_descriptor_Use").val(),
+                      "input_inquiryMachine_Use": $("#input_inquiryMachine_Use").val() },
+                success: function (data, status, xhr) {// success callback function
+                    var tableData
+                    for(var i=0;i<data.length;i++){
+                    tableData+="<tr>"+"<td>"+data[i]+"</td>"+"</tr>"
+                    }
+                    //現在tableData已經生成好了，把他賦值給上面的tbody
+                    $("#tbody1").html(tableData)                      
+            }
+        });
+    });
     $("#submit_postMachine_Use").click(function(){
         $.ajax('/CreateContent',   // request url
             {
@@ -144,6 +200,59 @@ $(document).ready(function () {
         });
 
     });
+
+    // Smooth scrolling using jQuery easing
+    $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
+        if (
+            location.pathname.replace(/^\//, "") ==
+            this.pathname.replace(/^\//, "") &&
+            location.hostname == this.hostname
+        ) {
+            var target = $(this.hash);
+            target = target.length
+                ? target
+                : $("[name=" + this.hash.slice(1) + "]");
+            if (target.length) {
+                $("html, body").animate(
+                    {
+                        scrollTop: target.offset().top - 72,
+                    },
+                    1000,
+                    "easeInOutExpo"
+                );
+                return false;
+            }
+        }
+    });
+
+    // Closes responsive menu when a scroll trigger link is clicked
+    $(".js-scroll-trigger").click(function () {
+        $(".navbar-collapse").collapse("hide");
+    });
+
+    // Activate scrollspy to add active class to navbar items on scroll
+    $("body").scrollspy({
+        target: "#mainNav",
+        offset: 74,
+    });
+
+    // Collapse Navbar
+    var navbarCollapse = function () {
+        if ($("#mainNav").offset().top > 100) {
+            $("#mainNav").addClass("navbar-shrink");
+        } else {
+            $("#mainNav").removeClass("navbar-shrink");
+        }
+    };
+    // Collapse now if page is not at top
+    navbarCollapse();
+    // Collapse the navbar when page is scrolled
+    $(window).scroll(navbarCollapse);
+
+    //carousel slide interval time
+    $('.carousel').carousel({
+        interval: 3000
+    })
 
 });
 
