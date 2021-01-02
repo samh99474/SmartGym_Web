@@ -7,6 +7,18 @@
 /*Ajax om2m*/
 $(document).ready(function () {
 
+    $.ajax('/CreateSensor',   // request url
+                    {
+                        method: "GET",
+                        success: function (data, status, xhr) {// success callback function
+                            $('.p_machine').append(data);
+                            alert("讀取All Sensors 成功" + "，" + data + "，" + status+ "，" + xhr)
+                        },
+                        error: function (data, status, xhr) {
+                            alert("讀取All Sensors 失敗" + "，" + data + "，" + status+ "，" + xhr)
+                        }
+                    });
+
     $("#submit_postMachine").click(function () {
         if ($('#input_postMachine').val().length == 0) {
             alert("請輸欲新增之裝置名稱")
@@ -79,6 +91,59 @@ $(document).ready(function () {
         });
 
     });
+
+    // Smooth scrolling using jQuery easing
+    $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
+        if (
+            location.pathname.replace(/^\//, "") ==
+            this.pathname.replace(/^\//, "") &&
+            location.hostname == this.hostname
+        ) {
+            var target = $(this.hash);
+            target = target.length
+                ? target
+                : $("[name=" + this.hash.slice(1) + "]");
+            if (target.length) {
+                $("html, body").animate(
+                    {
+                        scrollTop: target.offset().top - 72,
+                    },
+                    1000,
+                    "easeInOutExpo"
+                );
+                return false;
+            }
+        }
+    });
+
+    // Closes responsive menu when a scroll trigger link is clicked
+    $(".js-scroll-trigger").click(function () {
+        $(".navbar-collapse").collapse("hide");
+    });
+
+    // Activate scrollspy to add active class to navbar items on scroll
+    $("body").scrollspy({
+        target: "#mainNav",
+        offset: 74,
+    });
+
+    // Collapse Navbar
+    var navbarCollapse = function () {
+        if ($("#mainNav").offset().top > 100) {
+            $("#mainNav").addClass("navbar-shrink");
+        } else {
+            $("#mainNav").removeClass("navbar-shrink");
+        }
+    };
+    // Collapse now if page is not at top
+    navbarCollapse();
+    // Collapse the navbar when page is scrolled
+    $(window).scroll(navbarCollapse);
+
+    //carousel slide interval time
+    $('.carousel').carousel({
+        interval: 3000
+    })
 
 });
 
