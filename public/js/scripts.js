@@ -7,17 +7,6 @@
 /*Ajax om2m*/
 $(document).ready(function () {
 
-    $.ajax('/CreateSensor',   // request url
-                    {
-                        method: "GET",
-                        success: function (data, status, xhr) {// success callback function
-                            $('.p_machine').append(data);
-                            alert("讀取All Sensors 成功" + "，" + data + "，" + status+ "，" + xhr)
-                        },
-                        error: function (data, status, xhr) {
-                            alert("讀取All Sensors 失敗" + "，" + data + "，" + status+ "，" + xhr)
-                        }
-                    });
 
     $("#submit_postMachine").click(function () {
         if ($('#input_postMachine').val().length == 0) {
