@@ -68,7 +68,7 @@ $(document).ready(function () {
                 method:"POST",
                 data:{"input_deleteMachine": $("#input_deleteMachine").val()},
                 success: function (data, status, xhr) {// success callback function
-                    
+                    $('p').append(data);
             }
         });
     });
@@ -78,7 +78,6 @@ $(document).ready(function () {
             {
                 method:"GET",
                 success: function (data, status, xhr) {// success callback function
-                
                     var tableData
                     //動態增加5個td,並且把data陣列的五個值賦給每個td
                     for(var i=0;i<data.length;i++){
@@ -89,8 +88,37 @@ $(document).ready(function () {
             }
         });
     });
-
-
+    $("#submit_inquiryMachine_Data").click(function(){
+        $.ajax('/GetSensorDescriptor',   // request url
+            {
+                method:"GET",
+                data:{"input_inquiryMachine_Use": $("#input_inquiryMachine_Use").val() },
+                success: function (data, status, xhr) {// success callback function
+                    var tableData
+                    for(var i=0;i<data.length;i++){
+                    tableData+="<tr>"+"<td>"+data[i]+"</td>"+"</tr>"
+                    }
+                    //現在tableData已經生成好了，把他賦值給上面的tbody
+                    $("#tbody1").html(tableData)                      
+            }
+        });
+    });
+    $("#submit_inquiryMachine_Contentinstance").click(function(){
+        $.ajax('/GetSensorDescriptorData',   // request url
+            {
+                method:"GET",
+                data:{"input_inquiryMachine_descriptor_Use": $("#input_inquiryMachine_descriptor_Use").val(),
+                      "input_inquiryMachine_Use": $("#input_inquiryMachine_Use").val() },
+                success: function (data, status, xhr) {// success callback function
+                    var tableData
+                    for(var i=0;i<data.length;i++){
+                    tableData+="<tr>"+"<td>"+data[i]+"</td>"+"</tr>"
+                    }
+                    //現在tableData已經生成好了，把他賦值給上面的tbody
+                    $("#tbody1").html(tableData)                      
+            }
+        });
+    });
     $("#submit_postMachine_Use").click(function(){
         $.ajax('/CreateContent',   // request url
             {

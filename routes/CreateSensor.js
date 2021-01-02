@@ -4,7 +4,7 @@ var request = require('sync-request');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send(read_all_sensor());
+  res.send();
 });
 
 /* POST users listing. */

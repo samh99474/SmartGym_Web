@@ -4,13 +4,13 @@ var request = require('sync-request');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send(read_sensor());
+  res.send();
 });
 
 /* POST users listing. */
 router.post('/', function(req, res, next) {
-    console.log(req.body.input_deleteMachine)
-    console.log('hahahahaha')
+    //console.log(req.body.input_deleteMachine)
+    //console.log('hahahahaha')
     delete_sensor(read_sensor_url(req.body.input_deleteMachine));
     //res.send('received data='+req.body.input_deleteMachine);
 });
