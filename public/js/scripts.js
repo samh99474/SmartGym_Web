@@ -61,7 +61,16 @@ $(document).ready(function () {
             }
         }
     });
-
+    $("#submit_deleteMachine").click(function(){
+        $.ajax('/DeleteSensor',   // request url
+            {
+                method:"POST",
+                data:{"input_deleteMachine": $("#input_deleteMachine").val()},
+                success: function (data, status, xhr) {// success callback function
+                    
+            }
+        });
+    });
 
 
     $("#submit_postMachine_Use").click(function(){
