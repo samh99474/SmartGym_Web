@@ -28,7 +28,6 @@ $(document).ready(function () {
   const $btnSignOut = $('#btnSignOut');
   const $signInfo = $('#sign-info');
 
-
   // SignIn
   $btnSignIn.click(function(e){
     auth.signInWithEmailAndPassword($email.val(), $password.val()).then((user) => {
