@@ -120,6 +120,30 @@ $(document).ready(function () {
             }
         });
     });
+    $("#submit_inquiryMachine_Contentinstance_table").click(function(){
+        $.ajax('/GetContentinstanceData',   // request url
+            {
+                method:"GET",
+                data:{"input_inquiryMachine_descriptor_Use": $("#input_inquiryMachine_descriptor_Use").val(),
+                      "input_inquiryMachine_Use": $("#input_inquiryMachine_Use").val(),
+                      "input_inquiryMachine_contentinstance_Use":$("#input_inquiryMachine_contentinstance_Use").val() },
+                success: function (data, status, xhr) {// success callback function
+                    var tableData =""
+                    console.log(data)
+                    console.log(Object.keys(data).length)
+                    console.log(Object.keys(data))
+                    console.log(Object.keys(data)[0])
+                    for(var i=0;i< Object.keys(data).length ;i++){
+                        key = Object.keys[i]
+                        //tableData+="<tr>"+"<td>"+Object.keys(data[i])+"</td>"+"<td>"+Object.values(data[i])+"</td>"+"</tr>"
+                        tableData+="<tr>"+"<td>"+Object.keys(data)[i]+"</td>"+"<td>"+Object.values(data)[i]+"</td>"+"</tr>"
+                    }
+                    //現在tableData已經生成好了，把他賦值給上面的tbody
+                    $("#tbody1").html(tableData)                     
+            }
+        });
+    });
+
     $("#submit_postMachine_Use").click(function(){
         $.ajax('/CreateContent',   // request url
             {

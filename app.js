@@ -23,6 +23,8 @@ var GetSensorDescriptorRouter = require('./routes/GetSensorDescriptor');
 
 var GetSensorDescriptorDataRouter = require('./routes/GetSensorDescriptorData');
 
+var GetContentinstanceDataRouter = require('./routes/GetContentinstanceData');
+
 var app = express();
 
 // view engine setup
@@ -55,6 +57,8 @@ app.use('/GetSensor', GetSensorRouter);
 app.use('/GetSensorDescriptor', GetSensorDescriptorRouter);
 
 app.use('/GetSensorDescriptorData', GetSensorDescriptorDataRouter);
+
+app.use('/GetContentinstanceData', GetContentinstanceDataRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
