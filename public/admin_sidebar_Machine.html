@@ -63,9 +63,9 @@
     <!-- Masthead-->
     <header class="masthead">
         <div class="container">
-            <div class="masthead-subheading">Welcome To Smart Gym</div>
-            <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
-            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">立即登入/註冊</a>
+            <!--<div class="masthead-subheading">Welcome To Smart Gym</div>-->
+            <div class="masthead-heading text-uppercase">Welcome</div>
+           <!--<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">立即登入/註冊</a>-->
         </div>
     </header>
 
@@ -250,19 +250,30 @@
                                         class="form-text text-muted">請輸入欲查詢之設備Descriptor</small>
                                     <input id="input_inquiryMachine_descriptor_Use" type="text"
                                         name="input_inquiryMachine_descriptor_Use"/>
+                                    <small id="samall_inquiryMachine_contentinstance_Use"
+                                        class="form-text text-muted">請輸入欲查詢之Contentinstance</small>
+                                    <input id="input_inquiryMachine_contentinstance_Use" type="text"
+                                        name="input_inquiryMachine_contentinstance_Use"/>
+
+                                        
                                 </form>
                                 <button type="submit_inquiryMachine_Use" id="submit_inquiryMachine_Use"
                                 class="btn btn-primary mt-4 submit_inquiryMachine_Use">查詢全Sensor</button>
-                            <button type="submit_inquiryMachine_Data" id="submit_inquiryMachine_Data"
+                                <button type="submit_inquiryMachine_Data" id="submit_inquiryMachine_Data"
                                 class="btn btn-primary mt-4 submit_inquiryMachine_Data">立即查詢</button>
                                 <button type="submit_inquiryMachine_Contentinstance" id="submit_inquiryMachine_Contentinstance"
                                 class="btn btn-primary mt-4 submit_inquiryMachine_Contentinstance">立即查詢contentinstance</button>
+                                <button type="submit_inquiryMachine_Contentinstance_table" id="submit_inquiryMachine_Contentinstance_table"
+                                class="btn btn-primary mt-4 submit_inquiryMachine_Contentinstance_table">立即詳細表格</button>
+                                
                                 <table>
                                 <tr>
                                     <th>My_Sensor</th>
                                 </tr>
                                     <tbody id="tbody1"></tbody>
                                 </table>
+
+                                <p id="machine_list"></p>
                             </div>
                         </section>
 

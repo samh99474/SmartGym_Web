@@ -3,17 +3,17 @@ var router = express.Router();
 var request = require('sync-request');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  console.log(req.query['input_inquiryMachine_Use'])
-  console.log(req.query['input_inquiryMachine_descriptor_Use'])
+  //console.log(req.query['input_inquiryMachine_Use'])
+  //console.log(req.query['input_inquiryMachine_descriptor_Use'])
   //抓SENSOR的URL來找到該SENSOR得DESCRIPTOR
   var descriptors = read_sensor_all_discriptor(read_sensor_url(req.query['input_inquiryMachine_Use']))
-  console.log(descriptors)
+  //console.log(descriptors)
   //抓DESCRIPTOR的URL來找到該DESCRIPTOR得Contentinstance
   var descriptor_url = get_discriptor_url(req.query['input_inquiryMachine_descriptor_Use'],descriptors)
-  console.log(descriptor_url)
+  //console.log(descriptor_url)
 
   var contentinstance = find_descriptor_all_contentinstance(descriptor_url)
-  console.log(contentinstance)
+  //console.log(contentinstance)
   res.send(contentinstance);
 });
 
