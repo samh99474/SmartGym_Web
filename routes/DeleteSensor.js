@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var request = require('sync-request');
+//超全域變數
+var app_func = require('./super_global');
+var OM2M_URL = app_func.require_URL();
+//超全域變數
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -23,7 +27,7 @@ function delete_sensor(name){
       'X-M2M-Origin': 'admin:admin',
       'Content-Type': 'application/xml;ty=2'
     }
-    var res = request('DELETE', `http://127.0.0.1:8080/~${name}` , {headers:headers});
+    var res = request('DELETE', `${OM2M_URL}~${name}` , {headers:headers});
     console.log(res.getBody('utf-8'));
 }
 function read_all_sensor(){
@@ -31,7 +35,7 @@ function read_all_sensor(){
         'X-M2M-Origin': 'admin:admin',
         "Accept": "application/json"
       }
-      var res = request('GET', 'http://localhost:8080/~/mn-cse?rcn=5&lvl=1' , {headers:headers });
+      var res = request('GET', `${OM2M_URL}~/mn-cse?rcn=5&lvl=1` , {headers:headers });
       //console.log(JSON.parse(res.getBody('utf-8'))['m2m:cb']['csi'])
       //console.log( JSON.parse(res.getBody('utf-8'))['m2m:cb']['ch'])
       return JSON.parse(res.getBody('utf-8'))['m2m:cb']['ch']
