@@ -11,7 +11,7 @@ var testRouter = require('./routes/test');
 
 var CreateSensorRouter = require('./routes/CreateSensor');
 
-var CreateDescriptorRouter = require('./routes/CreateDescriptor');
+//var CreateDescriptorRouter = require('./routes/CreateDescriptor');
 
 var CreateContentRouter = require('./routes/CreateContent');
 
@@ -46,7 +46,7 @@ app.use('/test', testRouter);
 
 app.use('/CreateSensor', CreateSensorRouter);
 
-app.use('/CreateDescriptor', CreateDescriptorRouter);
+//app.use('/CreateDescriptor', CreateDescriptorRouter);
 
 app.use('/CreateContent', CreateContentRouter);
 

@@ -113,7 +113,7 @@ function data_content(data_str_split, index_now)
 
     //console.log('input' + input);
 
-    input.mydata2 = 'cable';
+    input.mydata2 = 'bress_push';
     input.mydata3 = 'DATA';
 
     return input
