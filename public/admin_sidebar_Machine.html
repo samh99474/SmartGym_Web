@@ -24,8 +24,17 @@
     <!-- Ajax om2m-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <!-- Firebase -->
+    <script src="js/firebase.js"></script>
+
+
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
+    <style>
+        table, th, td ,tr{
+          border: 1px solid black;
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -266,14 +275,9 @@
                                 <button type="submit_inquiryMachine_Contentinstance_table" id="submit_inquiryMachine_Contentinstance_table"
                                 class="btn btn-primary mt-4 submit_inquiryMachine_Contentinstance_table">立即詳細表格</button>
                                 
-                                <table>
-                                <tr>
-                                    <th>My_Sensor</th>
-                                </tr>
+                                <table id="myTable">
                                     <tbody id="tbody1"></tbody>
                                 </table>
-
-                                <p id="machine_list"></p>
                             </div>
                         </section>
 
