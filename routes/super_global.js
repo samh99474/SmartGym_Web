@@ -1,7 +1,7 @@
 //OM2M全域變數
 function require_URL()
 {
-  var my_OM2M_URL = 'http://localhost:8080/';
+  var my_OM2M_URL = 'http://flion.frp.morrisnet.top/';
   return my_OM2M_URL;
 }
 //OM2M全域變數
