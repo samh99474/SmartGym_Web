@@ -21,11 +21,23 @@ firebase.initializeApp({
   const $btnSignUp = $('#btnSignUp');
   const $btnSignOut = $('#btnSignOut');
   const $signInfo = $('#sign-info');
+  
+
+  /*var managerdb = [
+    {userName: "wujackjack16@gmail.com",
+    hash: hashPW("wujackjack16@gmail.com", "as123456"),
+    last: ""}
+    ];*/
 
   // SignIn
   $btnSignIn.click(function(e){
     auth.signInWithEmailAndPassword($email.val(), $password.val()).then((user) => {
         window.location.href='admin_sidebar_manageUser.html';
+        if($email.val()=="wujackjack16@gmail.com" ){
+          
+            window.location.href='news.html';
+         
+        }
       })
       .catch((error) => {
         var errorCode = error.code;
