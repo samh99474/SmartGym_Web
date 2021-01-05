@@ -188,12 +188,6 @@
                                         class="form-text text-muted samall_postMachine">請輸入欲新增之設備名稱</small>
                                     <input id="input_postMachine" type="text" name="input_postMachine"
                                         required="required">
-
-                                    <label class="pt-4 mb-0 font-weight-bold" for="value">新增設備名稱之Descriptor:</label>
-                                    <small id="samall_postMachine_descriptor"
-                                        class="form-text text-muted">請輸入欲新增之設備Descriptor</small>
-                                    <input id="input_postMachine_descriptor" type="text"
-                                        name="input_postMachine_descriptor">
                                 </form>
                                 <button type="submit_postMachine" id="submit_postMachine"
                                         class="btn btn-primary mt-4 submit_postMachine">立即新增設備</button>
@@ -201,7 +195,7 @@
                         </section>
 
                         <section class="page-section col-lg-6" id="section_adjust">
-                            <h2>新增客戶使用設備</h2>
+                            <h2>新增設備contentinstance</h2>
 
                             <div class="form-group w-50">
                                 <form>
@@ -210,16 +204,51 @@
                                         class="form-text text-muted samall_postMachine_Use">請輸入欲使用之設備名稱</small>
                                     <input id="input_postMachine_Use" type="text" name="input_postMachine_Use"
                                         required="required">
-
-                                    <label class="pt-4 mb-0 font-weight-bold" for="value">新增設備名稱之Descriptor:</label>
                                     <small id="samall_postMachine_descriptor_Use"
-                                        class="form-text text-muted">請輸入欲新增之設備Descriptor</small>
-                                    <input id="input_postMachine_descriptor_Use" type="text"
-                                        name="input_postMachine_descriptor_Use">
+                                        class="form-text text-muted">請輸入欲新增之設備Contentinstance</small>
+                                        <table id="table_input" name="table_input">
+                                            <tr>
+                                              <th>Atribute</th>
+                                              <th>Value</th>
+                                            </tr>
+                                            <tr>
+                                              <td>User_Name</td>
+                                              <td><input type="text" name="User_Name" id="User_Name" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Date</td>
+                                                <td><input type="text" name="Date" id="Date" /></td>
+                                              </tr>
+                                            <tr>
+                                              <td>Start_Time</td>
+                                              <td><input type="text" name="Start_Time" id="Start_Time" /></td>
+                                            </tr>
+                                            <tr>
+                                              <td>End_Time</td>
+                                              <td><input type="text" name="End_Time" id="End_Time" /></td>
+                                            </tr>
+                                            <tr>
+                                              <td>Weight</td>
+                                              <td><input type="text" name="Weight" id="Weight" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td>number_of_set</td>
+                                                <td><input type="text" name="number_of_set" id="number_of_set" /></td>
+                                              </tr>
+                                            <tr>
+                                                <td>Average_speed</td>
+                                                <td><input type="text" name="Average_speed" id="Average_speed" /></td>
+                                              </tr>
+                                            <tr>
+                                                <td>Calories</td>
+                                                <td><input type="text" name="Calories" id="Calories" /></td>
+                                              </tr>
+                                          </table>
 
-                                    <button type="submit_postMachine_Use" id="submit_postMachine_Use"
-                                        class="btn btn-primary mt-4 submit_postMachine_Use">立即新增使用</button>
+                                    
                                 </form>
+                                <button type="submit_postMachine_Use" id="submit_postMachine_Use"
+                                        class="btn btn-primary mt-4 submit_postMachine_Use">立即新增使用</button>
                             </div>
                         </section>
 

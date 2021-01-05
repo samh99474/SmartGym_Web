@@ -10,21 +10,7 @@ $(document).ready(function () {
         if ($('#input_postMachine').val().length == 0) {
             alert("請輸欲新增之裝置名稱")
             return
-        } else {
-            if ($('#input_postMachine_descriptor').val().length == 0) {
-                $.ajax('/CreateSensor',   // request url
-                    {
-                        method: "POST",
-                        data: { "input_postMachine": $("#input_postMachine").val() },
-                        success: function (data, status, xhr) {// success callback function
-                            alert("成功新增" + "，" + data + "，" + status+ "，" + xhr)
-                        },
-                        error: function (data, status, xhr) {
-                            alert("失敗新增，可能重複輸入已存在之項目" + "，" + data + "，" + status+ "，" + xhr)
-                        }
-                    });
-            } else {
-                
+        } else {      
                 existing_sensor = new Boolean(false);
                 $.ajax('/CreateSensor',   // request url
                     {
@@ -38,26 +24,6 @@ $(document).ready(function () {
                             //失敗新增Sensor，可能重複輸入已存在之項目
                         }
                     });
-            
-                    $.ajax('/CreateDescriptor',   // request url
-                        {
-                            method: "POST",
-                            data: {
-                                "input_postMachine": $("#input_postMachine").val(),
-                                "input_postMachine_descriptor": $("#input_postMachine_descriptor").val()
-                            },
-                            success: function (data, status, xhr) {// success callback function
-                                if(existing_sensor){
-                                    alert("成功在既有的Sensor新增Descriptor" + "，" + data + "，" + status+ "，" + xhr)
-                                }else{
-                                    alert("成功新增Sensor，並新增Descriptor" + "，" + data + "，" + status+ "，" + xhr)
-                                }
-                            },
-                            error: function (data, status, xhr) {
-                                alert("失敗新增Descriptor" + "，" + data + "，" + status+ "，" + xhr)
-                            }
-                        });
-            }
         }
     });
     $("#submit_deleteMachine").click(function(){
@@ -146,7 +112,15 @@ $(document).ready(function () {
             {
                 method:"POST",
                 data:{"input_postMachine_Use": $("#input_postMachine_Use").val(),
-                      "input_postMachine_descriptor_Use": $("#input_postMachine_descriptor_Use").val() },
+                "User_Name": $("#User_Name").val(),
+                "Start_Time": $("#Start_Time").val(),
+                "Date": $("#Date").val(),
+                "End_Time": $("#End_Time").val(),
+                "Weight": $("#Weight").val(),
+                "number_of_set": $("#number_of_set").val(),
+                "Average_speed": $("#Average_speed").val(),
+                "Calories": $("#Calories").val()
+                      },
                       success: function (data, status, xhr) {// success callback function
                         alert("成功新增" + "，" + data + "，" + status+ "，" + xhr)
                     },
