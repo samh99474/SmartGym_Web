@@ -1,6 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var request = require('sync-request');
+//超全域變數
+var app_func = require('./super_global');
+var OM2M_URL = app_func.require_URL();
+//超全域變數
+//console.log('OM2M_URL : ' + OM2M_URL);
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -36,9 +42,11 @@ function creat_DESCRIPTOR_contentInstance(AEname,DCname){
           &lt;/obj&gt;
       </con>
   </m2m:cin>`
-    var res = request('POST', `http://localhost:8080/~/mn-cse/mn-name/${AEname}/${DCname}` , {headers:headers , body:xml});
+    var res = request('POST', `${OM2M_URL}~/mn-cse/mn-name/${AEname}/${DCname}` , {headers:headers , body:xml});
     //var res = request('POST', 'http://localhost:8080/~/mn-cse/CAE447774024' , {headers:headers , body:xml});
 
     console.log(res.getBody('utf-8'));
   }
+
+
   module.exports = router;

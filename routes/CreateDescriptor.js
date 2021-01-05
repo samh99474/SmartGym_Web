@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var request = require('sync-request');
+//超全域變數
+var app_func = require('./super_global');
+var OM2M_URL = app_func.require_URL();
+//超全域變數
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -26,7 +30,7 @@ function creat_DESCRIPTOR_container(AEname,DCname){
   xml=
 	`<m2m:cnt xmlns:m2m="http://www.onem2m.org/xml/protocols" rn="${DCname}">
 	</m2m:cnt>`
-  var res = request('POST', `http://localhost:8080/~/mn-cse/mn-name/${AEname}` , {headers:headers , body:xml});
+  var res = request('POST', `${OM2M_URL}~/mn-cse/mn-name/${AEname}` , {headers:headers , body:xml});
 
   console.log(res.getBody('utf-8'));
 }

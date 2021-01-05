@@ -6,9 +6,12 @@
 
 /*Ajax om2m*/
 $(document).ready(function () {
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> jonathan
     $("#submit_postMachine").click(function () {
         if ($('#input_postMachine').val().length == 0) {
             alert("請輸欲新增之裝置名稱")

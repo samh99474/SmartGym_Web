@@ -2,6 +2,10 @@ var express = require('express');
 var router = express.Router();
 var request = require('sync-request');
 var convert = require('xml-js');
+//超全域變數
+var app_func = require('./super_global');
+var OM2M_URL = app_func.require_URL();
+//超全域變數
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -50,7 +54,7 @@ function read_all_sensor(){
     'X-M2M-Origin': 'admin:admin',
     "Accept": "application/json"
   }
-  var res = request('GET', 'http://localhost:8080/~/mn-cse?rcn=5&lvl=1' , {headers:headers });
+  var res = request('GET', `${OM2M_URL}~/mn-cse?rcn=5&lvl=1` , {headers:headers });
   //console.log( JSON.parse(res.getBody('utf-8'))['m2m:cb']['ch'])
   data = JSON.parse(res.getBody('utf-8'))['m2m:cb']['ch']
   return data
@@ -58,7 +62,7 @@ function read_all_sensor(){
 //抓取  指定sensor(name) 的 url
 function read_sensor_url(name){
   var all_sensor = read_all_sensor()
-  for (i=1;i<all_sensor.length-1;i++)
+  for (i=1;i<all_sensor.length;i++)
   {
     if (name == all_sensor[i].nm)
     {
@@ -73,7 +77,7 @@ headers = {
   'X-M2M-Origin': 'admin:admin',
   "Accept": "application/json"
 }
-var res = request('GET', `http://localhost:8080/~${url}?rcn=5&lvl=1` , {headers:headers });
+var res = request('GET', `${OM2M_URL}~${url}?rcn=5&lvl=1` , {headers:headers });
 
 data = JSON.parse(res.getBody('utf-8'))['m2m:ae']['ch']
 
@@ -100,7 +104,7 @@ function find_descriptor_all_contentinstance(descriptor_url)
     'X-M2M-Origin': 'admin:admin',
     "Accept": "application/json"
   }
-  var res = request('GET', `http://localhost:8080/~${descriptor_url}?rcn=5&lvl=1` , {headers:headers });
+  var res = request('GET', `${OM2M_URL}~${descriptor_url}?rcn=5&lvl=1` , {headers:headers });
 
   data = JSON.parse(res.getBody('utf-8'))['m2m:cnt']['ch']
   /*
@@ -127,7 +131,7 @@ function get_contentinstance_table(select,contentinstances)
       }
   }
 
-  var res = request('GET', `http://localhost:8080/~${url}?rcn=5&lvl=1` , {headers:headers });
+  var res = request('GET', `${OM2M_URL}~${url}?rcn=5&lvl=1` , {headers:headers });
 
   data = JSON.parse(res.getBody('utf-8'))['m2m:cin']['con']
   return data
@@ -135,7 +139,7 @@ function get_contentinstance_table(select,contentinstances)
 
 //console.log(read_all_sensor())
 /*
-var descriptors = read_sensor_all_discriptor(read_sensor_url('threadmill'))
+var descriptors = read_sensor_all_discriptor(read_sensor_url('machine'))
 console.log(descriptors)
 
 var descriptor_url = get_discriptor_url('DATA',descriptors)
@@ -144,7 +148,7 @@ console.log(descriptor_url)
 var contentinstances = find_descriptor_all_contentinstance(descriptor_url)
 //console.log(contentinstances)
 
-var table = get_contentinstance_table('cin_827104540',contentinstances)
+var table = get_contentinstance_table('cin_739243557',contentinstances)
 console.log(table);
 
 var result1 = convert.xml2js(table, {compact: true, spaces: 4});
