@@ -30,6 +30,7 @@ router.get('/', function(req, res, next) {
   //morris
   a = {}
   result1['obj']['str'].forEach(element => a[element["_attributes"]["name"]] = element["_attributes"]["val"] );
+  result1['obj']['int'].forEach(element => a[element["_attributes"]["name"]] = element["_attributes"]["val"] );
   console.log(a);
   /* 我自己的
   for (var i=0;i<result1.length;i++)
