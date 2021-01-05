@@ -71,8 +71,8 @@ function split_data(read_data)
 
     //將object分解
     var data_str_split = data_str.split("\n\n");
-    console.log('data_str_split\'type : ' + typeof(data_str_split));
-    console.log('0 : ' +　data_str_split[0]);
+    //console.log('data_str_split\'type : ' + typeof(data_str_split));
+    //console.log('0 : ' +　data_str_split[0]);
     //將object字串分解
 
     return data_str_split;
@@ -90,13 +90,14 @@ function data_content(data_str_split, index_now)
     //將分解的字串放進對的位置
     var input = {};  //宣告物件
     input.User_Name = data_str_split_2[index_now + 0];
-    input.Start_Time = data_str_split_2[index_now + 1];
-    input.End_Time = data_str_split_2[index_now + 2];
-    input.Weight = data_str_split_2[index_now + 3];
-    input.Reps = data_str_split_2[index_now + 4];
-    input.number_of_set = data_str_split_2[index_now + 5];
-    input.Average_speed = data_str_split_2[index_now + 6];
-    input.Calories = data_str_split_2[index_now + 7];
+    input.Date = data_str_split_2[index_now + 1];
+    input.Start_Time = data_str_split_2[index_now + 2];
+    input.End_Time = data_str_split_2[index_now + 3];
+    input.Weight = data_str_split_2[index_now + 4];
+    input.Reps = data_str_split_2[index_now + 5];
+    input.number_of_set = data_str_split_2[index_now + 6];
+    input.Average_speed = data_str_split_2[index_now + 7];
+    input.Calories = data_str_split_2[index_now + 8];
     
     /*
     console.log('User_Name : ' + input.User_Name);
@@ -112,7 +113,7 @@ function data_content(data_str_split, index_now)
 
     //console.log('input' + input);
 
-    input.mydata2 = 'machine';
+    input.mydata2 = 'cable';
     input.mydata3 = 'DATA';
 
     return input
@@ -131,10 +132,12 @@ var test_len = test_amount.length;
 console.log('test_len : ' + test_len);
 //查看object個數
 
-for(var i = 0; i < test_len ; i = i+9)
+for(var i = 0; i < test_len-1 ; i = i+10)
 {
     input = data_content(data_str_split[0], i);
+    
     console.log('User_Name : ' + input.User_Name);
+    console.log('Date : ' + input.Date);
     console.log('Start_Time : ' + input.Start_Time);
     console.log('End_Time : ' + input.End_Time);
     console.log('Weight : ' + input.Weight);
@@ -142,6 +145,7 @@ for(var i = 0; i < test_len ; i = i+9)
     console.log('number_of_set : ' + input.number_of_set);
     console.log('Average_speed : ' + input.Average_speed);
     console.log('Calories : ' + input.Calories + '\n');
+    
 }
 */
 //debug用
