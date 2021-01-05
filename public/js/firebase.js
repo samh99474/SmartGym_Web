@@ -35,7 +35,7 @@ firebase.initializeApp({
         window.location.href='admin_sidebar_manageUser.html';
         if($email.val()=="wujackjack16@gmail.com" ){
           
-            window.location.href='news.html';
+            window.location.href='member.html';
          
         }
       })
