@@ -6,6 +6,32 @@
 
 /*Ajax om2m*/
 $(document).ready(function () {
+
+    $.ajax('/GetSensor',   // request url
+        {
+            method: "GET",
+            success: function (data, status, xhr) {// success callback function
+                //動態增加5個td,並且把data陣列的五個值賦給每個td
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i] != "acp_admin") { //去除掉acp_admin
+                        var obj = document.getElementById("select_machine");
+                        obj.add(new Option(data[i], data[i])); //new Option(“文字”,”值”)方法新增選項selection option          
+                    }
+                }
+                
+                var myselect = document.getElementById("select_machine")
+                var myselect_index = myselect.selectedIndex; //序號，取當前選中選項的序號
+                var myselect_val = myselect.options[myselect_index].value
+                $(".dataTable_selectMachineTitle").html(myselect_val)
+                
+            }
+        });  
+    $("#select_machine").change(function () {   //當Select有變化時，跟著變化
+        var opt = $("#select_machine").val();
+        $(".dataTable_selectMachineTitle").html(opt)
+    });              
+
+
     $("#submit_postMachine").click(function () {
         if ($('#input_postMachine').val().length == 0) {
             alert("請輸欲新增之裝置名稱")
@@ -136,7 +162,51 @@ $(document).ready(function () {
                         tableData+="<tr>"+"<td>"+Object.keys(data)[i]+"</td>"+"<td>"+Object.values(data)[i]+"</td>"+"</tr>"
                     }
                     //現在tableData已經生成好了，把他賦值給上面的tbody
-                    $("#tbody1").html(tableData)                     
+                    $("#tbody1").html(tableData)     
+                    
+                    //var dataTable_thead = "";
+                    //var dataTable_tfoot = "";
+                    //var dataTable_tbody ="";
+
+                    var dataSet = [];
+                    var dataSetTitle = [];
+                    //console.log(data)
+                    //console.log(Object.keys(data).length)
+                    //console.log(Object.keys(data))
+                    //console.log(Object.keys(data)[0])
+                    dataTable_thead+="<tr>";
+                    dataTable_tfoot+="<tr>";
+                    dataTable_tbody+="<tr>";
+                    for(var i=0;i< Object.keys(data).length ;i++){
+                        key = Object.keys[i];
+
+                        var obj = {}; // <---- Must Move Obj declaration inside loop
+
+                        obj['title'] = Object.keys(data)[i];
+                        dataSetTitle.push(obj);
+
+                        //dataSetTitle.push(Object.keys(data)[i]);
+                        dataSet.push(Object.values(data)[i]);
+                        
+                        //dataTable_thead+="<th>"+Object.keys(data)[i]+"</th>";
+                        //dataTable_tfoot+="<th>"+Object.keys(data)[i]+"</th>";
+                        //dataTable_tbody+="<td>"+Object.values(data)[i]+"</td>";
+                    }                        
+                    //dataTable_thead+="</tr>";
+                    //dataTable_tfoot+="</tr>";
+                    //dataTable_tbody+="</tr>";
+                    
+                    dataSet = [dataSet];//變成二維陣列[0][0]
+                    dataSet = dataSet.concat(dataSet);//[0][1]
+                    
+                    //現在tableData已經生成好了，把他賦值給上面的tbody
+                    //$("#dataTable_thead").html(dataTable_thead);
+                    //$("#dataTable_tfoot").html(dataTable_tfoot);
+                   
+                    $('#dataTable').DataTable( {
+                        data: dataSet,
+                        columns: dataSetTitle
+                    }); 
             }
         });
     });
