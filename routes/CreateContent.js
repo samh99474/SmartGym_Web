@@ -18,7 +18,21 @@ router.get('/', function(req, res, next) {
 /* POST users listing. */
 router.post('/', function(req, res, next) {
     console.log(req.body)
-    creat_DESCRIPTOR_contentInstance(req.body);
+    var test_amount = Object.keys(req.body);
+    var test_len = test_amount.length;
+    //console.log("test_len : " + test_len);
+
+    if(test_len == 9)
+    {
+      creat_DESCRIPTOR_contentInstance(req.body);
+    }
+    else if(test_len == 2)
+    {
+      post_test_DATA(req.body)
+    }
+
+    
+
   res.send('received data='+req.body.input_postMachine_Use);
 });
 
@@ -55,40 +69,53 @@ function creat_DESCRIPTOR_contentInstance(body){
     //console.log(res.getBody('utf-8'));
   }
 
-
-    //上傳測試資料
-  
-  //debug用
-  var read_data = fs.readFileSync('D://JeffTaipeiTech2020//i_GYM//test_data.txt', 'utf-8');
-  var data_str_split = read_txt.split_data(read_data);
-  //console.log('str_test_split : ' + typeof(str_test_split));
-  var input; 
-
-  //查看object個數
-  data_str_split_2 = data_str_split.toString().split("\n");
-  var test_amount = Object.keys(data_str_split_2);
-  var test_len = test_amount.length;
-  console.log('test_len : ' + test_len);
-  //查看object個數
-
-  for(var i = 0; i < test_len-1 ; i = i+10)
-  {
-      input = read_txt.data_content(data_str_split[0], i);
-      /*
-      console.log('User_Name : ' + input.User_Name);
-      console.log('Date : ' + input.Date);
-      console.log('Start_Time : ' + input.Start_Time);
-      console.log('End_Time : ' + input.End_Time);
-      console.log('Weight : ' + input.Weight);
-      console.log('Reps : ' + input.Reps);
-      console.log('number_of_set : ' + input.number_of_set);
-      console.log('Average_speed : ' + input.Average_speed);
-      console.log('Calories : ' + input.Calories + '\n');
-      */
-
-     creat_DESCRIPTOR_contentInstance(input);
-  }
-  
   //上傳測試資料
+  function post_test_DATA(body)
+  {
+    //debug用
+    var read_data = fs.readFileSync('D://JeffTaipeiTech2020//i_GYM//test_data.txt', 'utf-8');
+    var data_str_split = read_txt.split_data(read_data);
+    //console.log('str_test_split : ' + typeof(str_test_split));
+    var input; 
+
+    //查看object個數
+    data_str_split_2 = data_str_split.toString().split("\n");
+    var test_amount = Object.keys(data_str_split_2);
+    var test_len = test_amount.length;
+    console.log('test_len : ' + test_len);
+    //查看object個數
+    var times = 0;
+
+    for(var i = 0; i < test_len-1 ; i = i+10)
+    {
+        input = read_txt.data_content(data_str_split[0], i);
+        
+        /*
+        console.log('User_Name : ' + input.User_Name);
+        console.log('Date : ' + input.Date);
+        console.log('Start_Time : ' + input.Start_Time);
+        console.log('End_Time : ' + input.End_Time);
+        console.log('Weight : ' + input.Weight);
+        console.log('Reps : ' + input.Reps);
+        console.log('number_of_set : ' + input.number_of_set);
+        console.log('Average_speed : ' + input.Average_speed);
+        console.log('Calories : ' + input.Calories + '\n');
+        */
+
+
+        input.input_postMachine_Use = body.input_postMachine_Use;
+        creat_DESCRIPTOR_contentInstance(input);
+        times++;
+        if(times == body.input_amount_of_newData)
+        {
+          break;
+        }
+    }
+    
+
+  }
+  //上傳測試資料
+  
+
 
   module.exports = router;

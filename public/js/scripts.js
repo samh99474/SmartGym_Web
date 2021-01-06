@@ -10,7 +10,8 @@ $(document).ready(function () {
         if ($('#input_postMachine').val().length == 0) {
             alert("請輸欲新增之裝置名稱")
             return
-        } else {      
+        }
+        else {      
                 existing_sensor = new Boolean(false);
                 $.ajax('/CreateSensor',   // request url
                     {
@@ -130,6 +131,39 @@ $(document).ready(function () {
         });
 
     });
+
+    //上傳隨機測試資料
+    $("#submit_newData").click(function(){
+        if ($('#input_postMachine_Use').val().length == 0) {
+            alert("請輸欲新增之裝置名稱")
+            return
+        }
+        else if ($('#input_amount_of_newData').val().length == 0) {
+            alert("請輸入欲新增之data數量(1~100之間的數字)")
+            return
+        }
+        else {      
+            
+                $.ajax('/CreateContent',   // request url
+                {
+                    method:"POST",
+                    data:{"input_postMachine_Use": $("#input_postMachine_Use").val(),
+                    "input_amount_of_newData": $("#input_amount_of_newData").val(),
+                        },
+                        success: function (data, status, xhr) {// success callback function
+                            alert("成功新增" + "，" + data + "，" + status+ "，" + xhr)
+                        },
+                        error: function (data, status, xhr) {
+                            alert("失敗新增，可能重複輸入已存在之項目" + "，" + data + "，" + status+ "，" + xhr)
+                        }
+                });
+                
+        }
+        
+
+    });
+    //上傳隨機測試資料
+    
 
     // Smooth scrolling using jQuery easing
     $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
