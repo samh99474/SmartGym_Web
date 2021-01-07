@@ -175,65 +175,30 @@
 
                 <div class="card mb-4">
                     <div class="card-header">
-                        <i class="fas fa-table mr-1"></i>
-                        <div class="dataTable_selectMachineTitle">設備歷史紀錄</div>
-                        <button type="button" id="submit_deleteSelectMachine"
-                                        class="btn btn-primary mt-4 submit_deleteSelectMachine">立即刪除設備</button>
+                        <i class="fas fa-table mr-1"></i>歷史使用紀錄
+                        <div class="dataTable_selectMachineTitle" id="dataTable_selectMachineTitle"></div>
 
-                        <div class="form-group w-25 my-0 py-0">
-                            <select class="form-control" id="select_machine">
-                              
-                            </select>
-                          </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group align-center w-100 my-0 py-0">
+                                    <select class="form-control w-100 my-0 py-0 pb-0" id="select_machine" name="select_machine">
+                        
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <button type="button" id="submit_TabledeleteSelectMachine"
+                                    class="btn btn-primary mt-0 submit_TabledeleteSelectMachine">立即刪除設備</button>
+                                <button type="button" id="submit_TableInquirySelectMachine"
+                                    class="btn btn-primary mt-0 submit_TableInquirySelectMachine">立即查詢</button>
+                            </div>
+                        </div>
+                        
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead id="dataTable_thead">
-                                    <!-- 
-                                      <tr>
-                                        <th>使用者</th>
-                                        <th>使用中</th>
-                                        <th>年齡</th>
-                                        <th>身高</th>
-                                        <th>體重</th>
-                                        <th>開始時間</th>
-                                        <th>離開時間</th>
-                                        <th>總使用時間</th>
-                                        <th>卡路里</th>
-                                    </tr>  
-                                     -->
-                                </thead>
-                                <tfoot id="dataTable_tfoot">
-                                    <!-- 
-                                      <tr>
-                                        <th>使用者</th>
-                                        <th>使用中</th>
-                                        <th>年齡</th>
-                                        <th>身高</th>
-                                        <th>體重</th>
-                                        <th>開始時間</th>
-                                        <th>離開時間</th>
-                                        <th>總使用時間</th>
-                                        <th>卡路里</th>
-                                    </tr>  
-                                     -->
-                                </tfoot>
-                                <tbody id="dataTable_tbody">
-                                    <!-- 
-                                      <tr>
-                                        <th>使用者</th>
-                                        <th>使用中</th>
-                                        <th>年齡</th>
-                                        <th>身高</th>
-                                        <th>體重</th>
-                                        <th>開始時間</th>
-                                        <th>離開時間</th>
-                                        <th>總使用時間</th>
-                                        <th>卡路里</th>
-                                    </tr>  
-                                     -->
-                                </tbody>
+                                
                             </table>
                         </div>
                     </div>

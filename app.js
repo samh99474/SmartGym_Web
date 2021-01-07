@@ -25,6 +25,12 @@ var GetSensorDescriptorDataRouter = require('./routes/GetSensorDescriptorData');
 
 var GetContentinstanceDataRouter = require('./routes/GetContentinstanceData');
 
+var TableGetContentinstanceData = require('./routes/TableGetContentinstanceData');
+
+var TableGetSensorDescriptorData = require('./routes/TableGetSensorDescriptorData');
+
+var TableDeleteSensor = require('./routes/TableDeleteSensor');
+
 var app = express();
 
 // view engine setup
@@ -59,6 +65,12 @@ app.use('/GetSensorDescriptor', GetSensorDescriptorRouter);
 app.use('/GetSensorDescriptorData', GetSensorDescriptorDataRouter);
 
 app.use('/GetContentinstanceData', GetContentinstanceDataRouter);
+
+app.use('/TableGetContentinstanceData', TableGetContentinstanceData);
+
+app.use('/TableGetSensorDescriptorData', TableGetSensorDescriptorData);
+
+app.use('/TableDeleteSensor', TableDeleteSensor);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

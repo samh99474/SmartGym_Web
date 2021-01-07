@@ -6,7 +6,7 @@
 
 /*Ajax om2m*/
 $(document).ready(function () {
-
+    
     $.ajax('/GetSensor',   // request url
         {
             method: "GET",
@@ -18,18 +18,116 @@ $(document).ready(function () {
                         obj.add(new Option(data[i], data[i])); //new Option(“文字”,”值”)方法新增選項selection option          
                     }
                 }
-                
+                /*
                 var myselect = document.getElementById("select_machine")
                 var myselect_index = myselect.selectedIndex; //序號，取當前選中選項的序號
                 var myselect_val = myselect.options[myselect_index].value
                 $(".dataTable_selectMachineTitle").html(myselect_val)
-                
+                */
             }
         });  
     $("#select_machine").change(function () {   //當Select有變化時，跟著變化
+        
+    });    
+
+    $("#submit_TabledeleteSelectMachine").click(function () {  //刪除Table 所選的Sensor
+        $.ajax('/TableDeleteSensor',   // request url
+            {
+                method:"POST",
+                data:{"select_machine": $("#select_machine").val()},
+                success: function (data, status, xhr) {// success callback function
+                    alert($("#select_machine").val()+"刪除成功");
+                    location.reload();
+            },error: function (data, status, xhr) {
+                
+            }
+        });
+    });      
+    
+    $("#submit_TableInquirySelectMachine").click(function () {  //查詢Table 所選的Sensor
+        var Contentinstance = [];
         var opt = $("#select_machine").val();
         $(".dataTable_selectMachineTitle").html(opt)
-    });              
+
+        $.ajax('/TableGetSensorDescriptorData',   // request url
+            {
+                method: "GET",
+                data: {
+                    "ONLINE": "ONLINE",
+                    "DESCRIPTOR": "DESCRIPTOR",
+                    "DATA": "DATA",
+                    "select_machine": $("#select_machine").val(),
+                },
+                success: function (data, status, xhr) {// success callback function
+                    for (var i = 0; i < data.length; i++) {
+                        Contentinstance.push(data[i]);
+                    }
+                    TableGetContentinstanceData(Contentinstance);
+                },
+                error: function (data, status, xhr) {
+                }
+            });
+    });
+    
+    function TableGetContentinstanceData(Contentinstance){
+            
+        var dataSet = [];
+        var dataSetTitle = [];
+        //alert("MACHINE:"+$("#select_machine").val()+Contentinstance)
+            
+            //for (var i = 0; i < Contentinstance.length; i++) {
+                $.ajax('/TableGetContentinstanceData',   // request url
+                {
+                    method: "GET",
+                    data: {
+                        "select_machine": $("#select_machine").val(),
+                        "Contentinstance": Contentinstance[0],
+                    },
+                    success: function (data, status, xhr) {// success callback function
+                        //console.log(data)
+                        //console.log(Object.keys(data).length)
+                        //console.log(Object.keys(data))
+                        //console.log(Object.keys(data)[0])
+                        //alert(Contentinstance)
+                        
+                        //console.log(data)
+                        //console.log(Object.keys(data).length)
+                        //console.log(Object.keys(data))
+                        //console.log(Object.keys(data)[0])
+                        for (var i = 0; i < Object.keys(data).length; i++) {
+                            key = Object.keys[i];
+    
+                            var obj = {}; // <---- Must Move Obj declaration inside loop
+    
+                            obj['title'] = Object.keys(data)[i];
+                            dataSetTitle.push(obj);
+    
+                            //dataSetTitle.push(Object.keys(data)[i]);
+                            dataSet.push(Object.values(data)[i]);
+                        }
+                        dataSet = [dataSet];//變成二維陣列[0][0]
+                        dataSet = dataSet.concat(dataSet);//[0][1]
+                        dataDable_showDataSet(dataSet,dataSetTitle);
+                    }
+                });   
+            //}
+            
+     }
+
+     function dataDable_showDataSet(dataSet,dataSetTitle){
+        console.log("1");
+        if ( $.fn.dataTable.isDataTable( '#dataTable' ) ) {
+            ContentinstanceDataTable.destroy();
+          $('#dataTable').empty(); 
+        }
+        console.log("2");
+        ContentinstanceDataTable = $('#dataTable').DataTable({
+          data: dataSet,
+          columns: dataSetTitle,
+        } );
+      }
+ 
+
 
 
     $("#submit_postMachine").click(function () {
