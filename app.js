@@ -11,8 +11,6 @@ var testRouter = require('./routes/test');
 
 var CreateSensorRouter = require('./routes/CreateSensor');
 
-//var CreateDescriptorRouter = require('./routes/CreateDescriptor');
-
 var CreateContentRouter = require('./routes/CreateContent');
 
 var DeleteSensorRouter = require('./routes/DeleteSensor');
@@ -25,16 +23,20 @@ var GetSensorDescriptorDataRouter = require('./routes/GetSensorDescriptorData');
 
 var GetContentinstanceDataRouter = require('./routes/GetContentinstanceData');
 
+var server_firebaseRouter = require('./routes/server_firebase');
+
+
+
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser("key"));
 //static
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -59,6 +61,9 @@ app.use('/GetSensorDescriptor', GetSensorDescriptorRouter);
 app.use('/GetSensorDescriptorData', GetSensorDescriptorDataRouter);
 
 app.use('/GetContentinstanceData', GetContentinstanceDataRouter);
+
+app.use('/server_firebase', server_firebaseRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

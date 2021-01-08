@@ -17,26 +17,27 @@ firebase.initializeApp({
   // REGISTER DOM ELEMENTS
   const $email = $('#email');
   const $password = $('#password');
+  const $tokenId = $('#tokenId');
   const $btnSignIn = $('#btnSignIn');
   const $btnSignUp = $('#btnSignUp');
   const $btnSignOut = $('#btnSignOut');
   const $signInfo = $('#sign-info');
+  const $loginForm = $('#loginForm');
 
   // SignIn
   $btnSignIn.click(function(e){
-    auth.signInWithEmailAndPassword($email.val(), $password.val()).then((user) => {
-        window.location.href='admin_sidebar_manageUser.html';
+    auth.signInWithEmailAndPassword($email.val(), $password.val()).then((response) => {
+      response.user.getIdToken().then((getIdToken) => {
+        $tokenId.val(getIdToken);
+        console.log(getIdToken)
+        $loginForm.submit();
       })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        //window.location.href='admin_sidebar_manageUser.html';
+      })
+      .catch(function(e){
+        $signInfo.html(e.message);
       });
-
-    console.log($email.val())
-    .catch(function(e){
-      $signInfo.html(e.message);
     });
-  });
 
   // SignUp
   $btnSignUp.click(function(e){
@@ -50,7 +51,7 @@ firebase.initializeApp({
   auth.onAuthStateChanged(function(user){
     if(user) {
       $signInfo.html(`${user.email} is login...`);
-      console.log(user);
+      //console.log(user);
     } else {
       console.log("not logged in");
     }
