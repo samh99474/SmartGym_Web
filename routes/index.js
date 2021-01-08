@@ -1,7 +1,15 @@
 var express = require('express');
 var router = express.Router();
-email = "jonathan1446171@gmail.com"
 
+var email = ""
+
+router.post('/', function(req, res, next) {
+  console.log('hahahahahahahahahahahaha')
+  console.log(req.body['Email'])
+  email = req.body['Email']
+  return res.send()
+
+});
 /* GET home page. */
 router.get('/:fun', function(req, res, next) {
   console.log(req.cookies.login);
@@ -35,7 +43,7 @@ router.get('/:fun', function(req, res, next) {
                 
     }
 	}else{
-		return res.redirect('/server_firebase/login.html')
+		return res.redirect('/login.html')
 	}
 });
 

@@ -140,7 +140,7 @@ function get_contentinstance_table(select,contentinstances)
 
 //console.log(read_all_sensor())
 /*
-var descriptors = read_sensor_all_discriptor(read_sensor_url('machine'))
+var descriptors = read_sensor_all_discriptor(read_sensor_url('threadmill'))
 console.log(descriptors)
 
 var descriptor_url = get_discriptor_url('DATA',descriptors)
@@ -149,16 +149,17 @@ console.log(descriptor_url)
 var contentinstances = find_descriptor_all_contentinstance(descriptor_url)
 //console.log(contentinstances)
 
-var table = get_contentinstance_table('cin_739243557',contentinstances)
+var table = get_contentinstance_table('cin_905408129',contentinstances)
 console.log(table);
 
 var result1 = convert.xml2js(table, {compact: true, spaces: 4});
 var result2 = convert.xml2js(table, {compact: false, spaces: 4});
 a = {}
 result1['obj']['str'].forEach(element => a[element["_attributes"]["name"]] = element["_attributes"]["val"] );
+result1['obj']['int'].forEach(element => a[element["_attributes"]["name"]] = element["_attributes"]["val"] );
 
 console.log(a);
-*/
 
+*/
 
 module.exports = router;

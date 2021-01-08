@@ -30,7 +30,15 @@ firebase.initializeApp({
       response.user.getIdToken().then((getIdToken) => {
         $tokenId.val(getIdToken);
         console.log(getIdToken)
-        $loginForm.submit();
+        $.ajax('/',   // request url
+        {
+            method:"POST",
+            data:{"Email": $email.val()},
+            success: function (data, status, xhr) {// success callback function    
+              $loginForm.submit();                
+        }
+    });
+       
       })
         //window.location.href='admin_sidebar_manageUser.html';
       })
