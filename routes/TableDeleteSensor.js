@@ -15,8 +15,8 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
     //console.log(req.body.input_deleteMachine)
     //console.log('hahahahaha')
-    delete_sensor(read_sensor_url(req.query['select_machine']));
-    //res.send('received data='+req.body.input_deleteMachine);
+    delete_sensor(read_sensor_url(req.body.select_machine));
+    res.send('received data='+req.body.select_machine);
 });
 
 

@@ -22,26 +22,10 @@ router.get('/', function(req, res, next) {
   var contentinstances = find_descriptor_all_contentinstance(descriptor_url)
   //console.log(contentinstances)
   //指定Contentinstance
-  var table = get_contentinstance_table(req.query['Contentinstance'],contentinstances)
-  var result1 = convert.xml2js(table, {compact: true, spaces: 4});
-  //var result2 = convert.xml2js(table, {compact: false, spaces: 4});
-  console.log(result1)
-  var dict={};
-  //morris
-  a = {}
-  result1['obj']['str'].forEach(element => a[element["_attributes"]["name"]] = element["_attributes"]["val"] );
-  console.log(a);
-  /* 我自己的
-  for (var i=0;i<result1.length;i++)
-  {
-    dict[result1['obj']['str'][i]['_attributes']['name']] = result1['obj']['str'][i]['_attributes']['val']
-  }
-  //console.log(result1['obj']['str'][0]['_attributes'])
-  //console.log(result1['obj']['str'][0]['_attributes']['name']);
+  var tables = get_all_contentinstance_table(contentinstances)
+  var result = parse_tables(tables)
 
-  //console.log(result1['obj']['str'][0]['_attributes']['val']);
-  console.log(dict)*/
-  res.send(a);
+  res.send(result);
 });
 
 /* POST users listing. */
@@ -137,9 +121,50 @@ function get_contentinstance_table(select,contentinstances)
   return data
 }
 
+function get_all_contentinstance_table(contentinstances) {
+  var url = [];
+  var res = [];
+  var data = [];
+  headers = {
+    'X-M2M-Origin': 'admin:admin',
+    "Accept": "application/json"
+  }
+  for (var i = 0; i < contentinstances.length; i++) {
+    url[i] = contentinstances[i]['val']
+  }
+  //console.log(url)
+
+  for (var i = 0; i < url.length; i++) {
+    res[i] = request('GET', `${OM2M_URL}~${url[i]}?rcn=5&lvl=1`, { headers: headers });
+    data[i] = JSON.parse(res[i].getBody('utf-8'))['m2m:cin']['con']
+  }
+  //console.log(data)
+  return data
+}
+
+function parse_tables(tables) {
+  var result1 = [];
+  for (var i = 0; i < tables.length; i++) {
+    result1[i] = convert.xml2js(tables[i], { compact: true, spaces: 4 });
+
+  }
+  //console.log(result1)
+  a = {};
+  b = [];
+  for (var i = 0; i < tables.length; i++) {
+    //console.log(result1[i]['obj']['str'])       
+    result1[i]['obj']['str'].forEach(element => a[element["_attributes"]["name"]] = element["_attributes"]["val"]);
+    result1[i]['obj']['int'].forEach(element => a[element["_attributes"]["name"]] = element["_attributes"]["val"] );
+    b[i] = a;
+    a = {};//清空字典
+  }
+  //console.log(b);
+  return b;
+}
+
 //console.log(read_all_sensor())
 /*
-var descriptors = read_sensor_all_discriptor(read_sensor_url('machine'))
+var descriptors = read_sensor_all_discriptor(read_sensor_url('threadmill'))
 console.log(descriptors)
 
 var descriptor_url = get_discriptor_url('DATA',descriptors)
@@ -148,7 +173,18 @@ console.log(descriptor_url)
 var contentinstances = find_descriptor_all_contentinstance(descriptor_url)
 //console.log(contentinstances)
 
-var table = get_contentinstance_table('cin_739243557',contentinstances)
+var tables = get_all_contentinstance_table(contentinstances)
+//console.log(tables.length);
+var result = parse_tables(tables)
+console.log(result);
+*/
+
+
+
+
+///////////////////////////////////////
+/*
+var table = get_contentinstance_table('cin_606964095',contentinstances)
 console.log(table);
 
 var result1 = convert.xml2js(table, {compact: true, spaces: 4});

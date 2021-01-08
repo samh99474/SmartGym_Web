@@ -37,7 +37,7 @@ $(document).ready(function () {
                 data:{"select_machine": $("#select_machine").val()},
                 success: function (data, status, xhr) {// success callback function
                     alert($("#select_machine").val()+"刪除成功");
-                    location.reload();
+                    location.reload();//refresh頁面自動刷新
             },error: function (data, status, xhr) {
                 
             }
@@ -48,6 +48,8 @@ $(document).ready(function () {
         var Contentinstance = [];
         var opt = $("#select_machine").val();
         $(".dataTable_selectMachineTitle").html(opt)
+        $(".dataTable_selectMachineTitle").append("(...查詢中 Querying...)");
+        $(".querying").html("(...查詢中 Querying...)");
 
         $.ajax('/TableGetSensorDescriptorData',   // request url
             {
@@ -65,6 +67,8 @@ $(document).ready(function () {
                     TableGetContentinstanceData(Contentinstance);
                 },
                 error: function (data, status, xhr) {
+                    alert("Table查詢失敗");
+                    location.reload();//refresh頁面自動刷新
                 }
             });
     });
@@ -72,10 +76,10 @@ $(document).ready(function () {
     function TableGetContentinstanceData(Contentinstance){
             
         var dataSet = [];
+        var dataSet_temp =[];
         var dataSetTitle = [];
+        var dataSetTitle_temp =[];
         //alert("MACHINE:"+$("#select_machine").val()+Contentinstance)
-            
-            //for (var i = 0; i < Contentinstance.length; i++) {
                 $.ajax('/TableGetContentinstanceData',   // request url
                 {
                     method: "GET",
@@ -94,23 +98,42 @@ $(document).ready(function () {
                         //console.log(Object.keys(data).length)
                         //console.log(Object.keys(data))
                         //console.log(Object.keys(data)[0])
-                        for (var i = 0; i < Object.keys(data).length; i++) {
-                            key = Object.keys[i];
+                        
+                        for (var j=0;j<data.length;j++)
+                        {
+                            dataSet_temp = [];//清空
+                            dataSetTitle_temp =[];//清空
+                            for (var i = 0; i < Object.keys(data[j]).length; i++) {
+                                key = Object.keys[i];
+        
+                                var obj = {}; // <---- Must Move Obj declaration inside loop
+        
+                                obj['title'] = Object.keys(data[j])[i];
+                                dataSetTitle_temp.push(obj);
+
+                                //dataSetTitle.push(Object.keys(data)[i]);
+                                dataSet_temp.push(Object.values(data[j])[i]);
+                            }
+                            if(dataSetTitle_temp.length >= dataSetTitle.length){
+                              dataSetTitle = dataSetTitle_temp;
+                            }else{      
     
-                            var obj = {}; // <---- Must Move Obj declaration inside loop
-    
-                            obj['title'] = Object.keys(data)[i];
-                            dataSetTitle.push(obj);
-    
-                            //dataSetTitle.push(Object.keys(data)[i]);
-                            dataSet.push(Object.values(data)[i]);
+                            }
+                            dataSet_temp = [dataSet_temp];//變成二維陣列[0][0]
+                            dataSet = dataSet.concat(dataSet_temp);//[0][1]
                         }
-                        dataSet = [dataSet];//變成二維陣列[0][0]
-                        dataSet = dataSet.concat(dataSet);//[0][1]
+
                         dataDable_showDataSet(dataSet,dataSetTitle);
+
+                        var opt = $("#select_machine").val();
+                        $(".dataTable_selectMachineTitle").html(opt)//查詢完 清空查詢字樣
+                        $(".querying").html("");//查詢完 清空查詢字樣
+
+                    },error: function (data, status, xhr) {
+                        alert("Table查詢失敗");
+                        location.reload();//refresh頁面自動刷新
                     }
                 });   
-            //}
             
      }
 

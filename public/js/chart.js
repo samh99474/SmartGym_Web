@@ -14,7 +14,7 @@ $(document).ready(function () {
     data: {
       labels: ["Mar 1", "Mar 2", "Mar 3", "Mar 4", "Mar 5", "Mar 6", "Mar 7", "Mar 8", "Mar 9", "Mar 10", "Mar 11", "Mar 12", "Mar 13"],
       datasets: [{
-        label: "Sessions",
+        label: "Treadmill 跑步機",
         lineTension: 0.3,
         backgroundColor: "rgba(2,117,216,0.2)",
         borderColor: "rgba(2,117,216,1)",
@@ -25,21 +25,21 @@ $(document).ready(function () {
         pointHoverBackgroundColor: "rgba(2,117,216,1)",
         pointHitRadius: 50,
         pointBorderWidth: 2,
-        data: [10000, 30162, 26263, 18394, 18287, 28682, 31274, 33259, 25849, 24159, 32651, 31984, 38451],
+        data: [20, 201, 262, 183, 182, 286, 312, 332, 258, 241, 326, 319, 384],
       },
       {
-        label: "Sessions",
+        label: "Spinning bike 飛輪腳踏車",
         lineTension: 0.3,
-        backgroundColor: "rgba(2,117,216,0.2)",
-        borderColor: "rgba(2,117,216,1)",
+        backgroundColor: "rgba(6,214,160,0.2)",
+        borderColor: "rgba(6,214,160,1)",
         pointRadius: 5,
-        pointBackgroundColor: "rgba(2,117,216,1)",
+        pointBackgroundColor: "rgba(6,214,160,1)",
         pointBorderColor: "rgba(255,255,255,0.8)",
         pointHoverRadius: 5,
-        pointHoverBackgroundColor: "rgba(2,117,216,1)",
+        pointHoverBackgroundColor: "rgba(6,214,160,1)",
         pointHitRadius: 50,
         pointBorderWidth: 2,
-        data: [1500, 30002, 26000, 12394, 11287, 28682, 30274, 13259, 15849, 24159, 12651, 11984, 38451],
+        data: [35, 30, 26, 23, 12, 86, 102, 132, 158, 141, 126, 192, 184],
       }],
     },
 
@@ -59,7 +59,7 @@ $(document).ready(function () {
         yAxes: [{
           ticks: {
             min: 0,
-            max: 40000,
+            max: 400,
             maxTicksLimit: 5
           },
           gridLines: {
@@ -122,7 +122,7 @@ var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
   type: 'pie',
   data: {
-    labels: ["Blue", "Red", "Yellow", "Green"],
+    labels: ["Treadmill 跑步機", "Spinning bike 飛輪腳踏車", "Dumbbell 啞鈴", "Steam rooms 蒸氣室"],
     datasets: [{
       data: [12.21, 15.58, 11.25, 8.32],
       backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
