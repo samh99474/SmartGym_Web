@@ -10708,3 +10708,6 @@ section#contact form#contactForm :-ms-input-placeholder {
   margin: 0;
   padding: 0;
 }
+
+/*fontawesome Icon圖示與文字不換行*/
+.fa { display:inline; }

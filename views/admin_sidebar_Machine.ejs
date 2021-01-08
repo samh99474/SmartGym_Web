@@ -27,12 +27,20 @@
     <!-- Firebase -->
     <script src="js/firebase.js"></script>
 
+    <!-- dataTable -->
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
+        crossorigin="anonymous" />
+
+
 
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
     <style>
-        table, th, td ,tr{
-          border: 1px solid black;
+        table,
+        th,
+        td,
+        tr {
+            border: 1px solid black;
         }
     </style>
 </head>
@@ -74,7 +82,7 @@
         <div class="container">
             <!--<div class="masthead-subheading">Welcome To Smart Gym</div>-->
             <div class="masthead-heading text-uppercase">Welcome</div>
-           <!--<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">立即登入/註冊</a>-->
+            <!--<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">立即登入/註冊</a>-->
         </div>
     </header>
 
@@ -148,7 +156,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a class="nav-link js-scroll-trigger" href="#section_current_machineData">目前使用</a>
+                                <a class="nav-link js-scroll-trigger" href="#section_current_machineData">使用狀況</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link js-scroll-trigger" href="#section_machineAnalysis">使用量分析</a>
@@ -162,18 +170,76 @@
             </nav>
 
             <section class="page-section" id="section_current_machineData">
-                <h2>目前使用</h2>
-                <p class="p_machine">MACHINE:</p>
+                <h2>使用狀況</h2>
+
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table mr-1"></i>歷史使用紀錄
+                        <div class="dataTable_selectMachineTitle" id="dataTable_selectMachineTitle"></div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group align-center w-100 my-0 py-0">
+                                    <select class="form-control w-100 my-0 py-0 pb-0" id="select_machine" name="select_machine">
+                        
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <button type="button" id="submit_TabledeleteSelectMachine"
+                                    class="btn btn-primary mt-0 submit_TabledeleteSelectMachine">立即刪除設備</button>
+                                <button type="button" id="submit_TableInquirySelectMachine"
+                                    class="btn btn-primary mt-0 submit_TableInquirySelectMachine">立即查詢</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div><p class="querying"></p></div>
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                
+                            </table>
+                        </div>
+                    </div>
+                </div>
                 <div class="line"></div>
             </section>
 
             <section class="page-section" id="section_machineAnalysis">
                 <h2>使用量分析</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.</p>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-chart-area mr-1"></i>
+                        設備使用次數
+                    </div>
+                    <div class="card-body"><canvas series="series" options="options" id="myAreaChart" width="100%" height="30"></canvas></div>
+                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-chart-bar mr-1"></i>
+                                營業額
+                            </div>
+                            <div class="card-body"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
+                            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-chart-pie mr-1"></i>
+                                設備使用佔比
+                            </div>
+                            <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
+                            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="line"></div>
             </section>
@@ -194,7 +260,7 @@
                                         required="required">
                                 </form>
                                 <button type="submit_postMachine" id="submit_postMachine"
-                                        class="btn btn-primary mt-4 submit_postMachine">立即新增設備</button>
+                                    class="btn btn-primary mt-4 submit_postMachine">立即新增設備</button>
                             </div>
                         </section>
 
@@ -264,7 +330,7 @@
                                     <label class="pt-4 mb-0 font-weight-bold" for="value">刪除設備名稱:</label>
                                     <small id="samall_deleteMachine" class="form-text text-muted">請輸入欲刪除之設備名稱</small>
                                     <input id="input_deleteMachine" type="text" name="input_deleteMachine"
-                                        required="required"/>
+                                        required="required" />
                                     <button type="button" id="submit_deleteMachine"
                                         class="btn btn-primary mt-4 submit_deleteMachine">立即刪除設備</button>
                                 </form>
@@ -281,29 +347,31 @@
                                     <small id="samall_inquiryMachine_Use"
                                         class="form-text text-muted samall_inquiryMachine_Use">請輸入欲查詢之設備名稱</small>
                                     <input id="input_inquiryMachine_Use" type="text" name="input_inquiryMachine_Use"
-                                        required="required"/>
+                                        required="required" />
 
                                     <label class="pt-4 mb-0 font-weight-bold" for="value">欲查詢設備名稱之Descriptor:</label>
                                     <small id="samall_inquiryMachine_descriptor_Use"
                                         class="form-text text-muted">請輸入欲查詢之設備Descriptor</small>
                                     <input id="input_inquiryMachine_descriptor_Use" type="text"
-                                        name="input_inquiryMachine_descriptor_Use"/>
+                                        name="input_inquiryMachine_descriptor_Use" />
                                     <small id="samall_inquiryMachine_contentinstance_Use"
                                         class="form-text text-muted">請輸入欲查詢之Contentinstance</small>
                                     <input id="input_inquiryMachine_contentinstance_Use" type="text"
-                                        name="input_inquiryMachine_contentinstance_Use"/>
+                                        name="input_inquiryMachine_contentinstance_Use" />
 
-                                        
+
                                 </form>
                                 <button type="submit_inquiryMachine_Use" id="submit_inquiryMachine_Use"
-                                class="btn btn-primary mt-4 submit_inquiryMachine_Use">查詢全Sensor</button>
+                                    class="btn btn-primary mt-4 submit_inquiryMachine_Use">查詢全Sensor</button>
                                 <button type="submit_inquiryMachine_Data" id="submit_inquiryMachine_Data"
-                                class="btn btn-primary mt-4 submit_inquiryMachine_Data">立即查詢</button>
-                                <button type="submit_inquiryMachine_Contentinstance" id="submit_inquiryMachine_Contentinstance"
-                                class="btn btn-primary mt-4 submit_inquiryMachine_Contentinstance">立即查詢contentinstance</button>
-                                <button type="submit_inquiryMachine_Contentinstance_table" id="submit_inquiryMachine_Contentinstance_table"
-                                class="btn btn-primary mt-4 submit_inquiryMachine_Contentinstance_table">立即詳細表格</button>
-                                
+                                    class="btn btn-primary mt-4 submit_inquiryMachine_Data">立即查詢</button>
+                                <button type="submit_inquiryMachine_Contentinstance"
+                                    id="submit_inquiryMachine_Contentinstance"
+                                    class="btn btn-primary mt-4 submit_inquiryMachine_Contentinstance">立即查詢contentinstance</button>
+                                <button type="submit_inquiryMachine_Contentinstance_table"
+                                    id="submit_inquiryMachine_Contentinstance_table"
+                                    class="btn btn-primary mt-4 submit_inquiryMachine_Contentinstance_table">立即詳細表格</button>
+
                                 <table id="myTable">
                                     <tbody id="tbody1"></tbody>
                                 </table>
@@ -368,6 +436,16 @@
         });
     </script>
 
+    <!-- dataTable -->
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+
+    <!-- Chart -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/chart-area-demo.js"></script>
+        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script src="assets/demo/chart-pie-demo.js"></script>
+        <script src="./js/chart.js"></script>
 
 </body>
 
