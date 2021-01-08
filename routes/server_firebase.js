@@ -3,7 +3,7 @@ var router = express.Router();
 
 
 /* GET users listing. */
-router.get('/login.html', function(req, res, next) {
+router.get('/login', function(req, res, next) {
   //res.send('Wiki home page');
   return res.redirect('/login.html');
 });
@@ -15,7 +15,7 @@ router.post('/', function(req, res, next) {
   //console.log(req.body.Email)
   //console.log(res)
   res.cookie("login",req.body.email)
-  return res.redirect('/admin_sidebar_Machine')
+  return res.redirect('/admin_sidebar_manageUser')
 });
 
 module.exports = router;
