@@ -26,6 +26,15 @@ router.get('/', function(req, res, next) {
 /* POST users listing. */
 router.post('/', function(req, res, next) {
     //res.send('received data='+req.body.input_deleteMachine);
+    var descriptors = read_sensor_all_discriptor(read_sensor_url(req.body['input_inquiryMachine_Use']))
+    //console.log(descriptors)
+    //抓DESCRIPTOR的URL來找到該DESCRIPTOR得Contentinstance
+    var descriptor_url = get_discriptor_url(req.body['input_inquiryMachine_descriptor_Use'],descriptors)
+    //console.log(descriptor_url)
+  
+    var contentinstance = find_descriptor_all_contentinstance(descriptor_url)
+    //console.log(contentinstance)
+    res.send(contentinstance);
 });
 
 function read_all_sensor(){

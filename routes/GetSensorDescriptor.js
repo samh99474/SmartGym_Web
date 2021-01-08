@@ -9,14 +9,16 @@ var OM2M_URL = app_func.require_URL();
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   //console.log('hahaha')
-  console.log(req.query['input_inquiryMachine_Use'])
-  var url = read_sensor_url(req.query['input_inquiryMachine_Use'])
-  res.send(read_sensor_all_discriptor(url));
+  //console.log(req.query['input_inquiryMachine_Use'])
+  //var url = read_sensor_url(req.query['input_inquiryMachine_Use'])
+  //res.send(read_sensor_all_discriptor(url));
 });
 
 /* POST users listing. */
 router.post('/', function(req, res, next) {
-    res.send('received data='+req.body.input_inquiryMachine_Use);
+  console.log(req.body['input_inquiryMachine_Use'])
+  var url = read_sensor_url(req.body['input_inquiryMachine_Use'])
+  res.send(read_sensor_all_discriptor(url));
 });
 
 function read_all_sensor(){

@@ -15,6 +15,8 @@ router.get('/', function(req, res, next) {
 /* POST users listing. */
 router.post('/', function(req, res, next) {
     //res.send('received data='+req.body.input_deleteMachine);
+    console.log(read_all_sensor())
+    res.send(read_all_sensor());
 });
 
 function read_all_sensor(){

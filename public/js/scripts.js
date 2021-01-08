@@ -40,7 +40,7 @@ $(document).ready(function () {
     $("#submit_inquiryMachine_Use").click(function(){
         $.ajax('/GetSensor',   // request url
             {
-                method:"GET",
+                method:"POST",
                 success: function (data, status, xhr) {// success callback function
                     var tableData
                     //動態增加5個td,並且把data陣列的五個值賦給每個td
@@ -55,7 +55,7 @@ $(document).ready(function () {
     $("#submit_inquiryMachine_Data").click(function(){
         $.ajax('/GetSensorDescriptor',   // request url
             {
-                method:"GET",
+                method:"POST",
                 data:{"input_inquiryMachine_Use": $("#input_inquiryMachine_Use").val() },
                 success: function (data, status, xhr) {// success callback function
                     var tableData
@@ -70,7 +70,7 @@ $(document).ready(function () {
     $("#submit_inquiryMachine_Contentinstance").click(function(){
         $.ajax('/GetSensorDescriptorData',   // request url
             {
-                method:"GET",
+                method:"POST",
                 data:{"input_inquiryMachine_descriptor_Use": $("#input_inquiryMachine_descriptor_Use").val(),
                       "input_inquiryMachine_Use": $("#input_inquiryMachine_Use").val() },
                 success: function (data, status, xhr) {// success callback function
@@ -86,7 +86,7 @@ $(document).ready(function () {
     $("#submit_inquiryMachine_Contentinstance_table").click(function(){
         $.ajax('/GetContentinstanceData',   // request url
             {
-                method:"GET",
+                method:"POST",
                 data:{"input_inquiryMachine_descriptor_Use": $("#input_inquiryMachine_descriptor_Use").val(),
                       "input_inquiryMachine_Use": $("#input_inquiryMachine_Use").val(),
                       "input_inquiryMachine_contentinstance_Use":$("#input_inquiryMachine_contentinstance_Use").val() },
