@@ -23,17 +23,17 @@ var GetSensorDescriptorDataRouter = require('./routes/GetSensorDescriptorData');
 
 var GetContentinstanceDataRouter = require('./routes/GetContentinstanceData');
 
-<<<<<<< HEAD
+
 var server_firebaseRouter = require('./routes/server_firebase');
 
 
-=======
+
 var TableGetContentinstanceData = require('./routes/TableGetContentinstanceData');
 
 var TableGetSensorDescriptorData = require('./routes/TableGetSensorDescriptorData');
 
 var TableDeleteSensor = require('./routes/TableDeleteSensor');
->>>>>>> samh
+
 
 var app = express();
 
@@ -70,16 +70,16 @@ app.use('/GetSensorDescriptorData', GetSensorDescriptorDataRouter);
 
 app.use('/GetContentinstanceData', GetContentinstanceDataRouter);
 
-<<<<<<< HEAD
+
 app.use('/server_firebase', server_firebaseRouter);
 
-=======
+
 app.use('/TableGetContentinstanceData', TableGetContentinstanceData);
 
 app.use('/TableGetSensorDescriptorData', TableGetSensorDescriptorData);
 
 app.use('/TableDeleteSensor', TableDeleteSensor);
->>>>>>> samh
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -31,6 +31,24 @@ router.get('/', function(req, res, next) {
 /* POST users listing. */
 router.post('/', function(req, res, next) {
     //res.send('received data='+req.body.input_deleteMachine);
+
+      //console.log(req.query['input_inquiryMachine_Use'])
+      //console.log(req.query['input_inquiryMachine_descriptor_Use'])
+      //console.log(req.query['input_inquiryMachine_contentinstance_Use'])
+      
+      var descriptors = read_sensor_all_discriptor(read_sensor_url(req.body['select_machine']))
+      //console.log(descriptors)
+      
+      var descriptor_url = get_discriptor_url("DATA",descriptors)
+      //console.log(descriptor_url)
+      //抓取所有Contentinstances
+      var contentinstances = find_descriptor_all_contentinstance(descriptor_url)
+      //console.log(contentinstances)
+      //指定Contentinstance
+      var tables = get_all_contentinstance_table(contentinstances)
+      var result = parse_tables(tables)
+    
+      res.send(result);
 });
 
 function read_all_sensor(){

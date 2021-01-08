@@ -9,7 +9,7 @@ $(document).ready(function () {
     
     $.ajax('/GetSensor',   // request url
         {
-            method: "GET",
+            method: "POST",
             success: function (data, status, xhr) {// success callback function
                 //動態增加5個td,並且把data陣列的五個值賦給每個td
                 for (var i = 0; i < data.length; i++) {
@@ -53,7 +53,7 @@ $(document).ready(function () {
 
         $.ajax('/TableGetSensorDescriptorData',   // request url
             {
-                method: "GET",
+                method: "POST",
                 data: {
                     "ONLINE": "ONLINE",
                     "DESCRIPTOR": "DESCRIPTOR",
@@ -82,7 +82,7 @@ $(document).ready(function () {
         //alert("MACHINE:"+$("#select_machine").val()+Contentinstance)
                 $.ajax('/TableGetContentinstanceData',   // request url
                 {
-                    method: "GET",
+                    method: "POST",
                     data: {
                         "select_machine": $("#select_machine").val(),
                         "Contentinstance": Contentinstance[0],
