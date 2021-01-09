@@ -57,7 +57,7 @@ fs.readFile('D://JeffTaipeiTech2020//i_GYM//read_txt.txt', "utf8", function(erro
 //非同步讀取資料
 
 //同步讀取資料
-var read_data = fs.readFileSync('./public/assets/read_txt.txt', 'utf-8');
+var read_data = fs.readFileSync('./public/assets/test_data.txt', 'utf-8');
 //console.log('data : ' + typeof(read_data));  //data的型別為"string"
 //同步讀取資料
 
