@@ -142,4 +142,8 @@ function XMLhttpGet(theUrl)  // 對m2m GET
 
 console.log(XMLhttpGet('http://localhost:8080/~/mn-cse?rcn=5&lvl=1'))
 */
-module.exports = router;
+
+module.exports = {
+  creat_DESCRIPTOR_container : creat_DESCRIPTOR_container,
+  
+};

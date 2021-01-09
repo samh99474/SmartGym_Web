@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title><%= title %></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Agency - Start Bootstrap Theme</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet"
+        type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+
+    <!-- Core theme CSS (includes Bootstrap) For sidebar-->
+    <link rel="stylesheet" href="./CSS/sidebar.css">
+</head>
+
+<body id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="./index.html" target="_parent"><img
+                    src="assets/img/Logo_taiwen_RegisteredMark_Lengthen.svg" alt="" /></a>
+            <!--href="#page-top"-->
+            <button class="navbar-toggler navbar-toggler-right navbar-btn bg-danger" type="button"
+                data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars ml-1"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ml-auto">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="./index.html"
+                            target="_parent">首頁</a></li>
+                    <!--若href="#services" 下面section跟scroll trigger(JS)搭配滾輪滑動-->
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="./about.html"
+                            target="_parent">關於我們</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="./facilities.html"
+                            target="_parent">器材設備</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="./news.html"
+                            target="_parent">最新消息</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger active" href="./login.html"
+                            target="_parent">登入/註冊SmartGym</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Masthead-->
+
+    <header class="masthead">
+        <div class="container">
+            <!--<div class="masthead-subheading">Welcome To Smart Gym</div>-->
+            <div class="masthead-heading text-uppercase">Welcome</div>
+           <!--<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">立即登入/註冊</a>-->
+        </div>
+    </header>
+
+    <!-- Sidebar-->
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>管理模式<br>Control Panel</h3>
+                <strong>CP</strong>
+            </div>
+
+            
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-home"></i>
+                        後台
+                    </a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="/admin_sidebar_AirCon">空調</a>
+                        </li>
+                        <li>
+                            <a href="/admin_sidebar_Machine">器材設備</a>
+                        </li>
+                        <li class="active">
+                            <a href="/admin_sidebar_manageUser">使用者管控</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+                            class="fas fa-bullhorn"></i>推播</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="./admin_sidebar_carouselSlide">首頁廣告Carousel Slide</a>
+                        </li>
+                        <li>
+                            <a href="./admin_sidebar_news">最新消息</a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+
+            <ul class="list-unstyled CTAs">
+                <li>
+                   <a href="login.html" class="article">登出</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Sidebar Page Content  -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>切換邊欄</span> <!-- Toggle Sidebar  -->
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link js-scroll-trigger" href="#section_allUsers">所有使用者</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <section class="page-section" id="section_allUsers">
+                <h2>所有使用者</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                    culpa qui officia deserunt mollit anim id est laborum.</p>
+                
+                <div class="line"></div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Footer-->
+    <footer class="footer py-4">
+        <div class="container">
+            <div class="row align-items-left">
+                <div class="font-weight-bold col-lg-8 text-lg-center text-center">
+                    <img src="assets/img/Logo_taiwen_RegisteredMark_TransparentBackground.png" width="250px" alt="" />
+                    <p>泰穩製造． 尾門車廂．穩扎穩打．穩如泰山</p>
+                </div>
+
+                <div class="col-lg- my-3 my-lg-0 text-left">
+                    <p><a class="text-danger" href="https://goo.gl/maps/wwFMXEo8gdTVVjgD8" target="_blank"><i
+                                class="fas fa-map-marker-alt"></i>&emsp;地址：彰化縣和美鎮源埤里嘉佃路600巷16號</a></p>
+                    <p><a class="text-danger" href="tel:04-7524507" target="_blank"><i
+                                class="fas fa-phone-volume"></i>&emsp;電話：04-7524507</a></p>
+                    <p><a class="text-danger" href="mailto:samh99474@gmail.com" target="_blank"><i
+                                class="far fa-envelope"></i>&emsp;郵件：samh99474@gmail.com</a></p>
+                    <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="text-center">
+                <p>Copyright © 泰穩尾門油壓升降機有限公司 Taiwen Ltd. All rights reserved.<a class="mr-3" href="#!">&emsp;●Privacy
+                        Policy</a><a href="#!">●Terms of Use</a> </p>
+
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Third party plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <!-- Contact form JS-->
+    <script src="assets/mail/jqBootstrapValidation.js"></script>
+    <script src="assets/mail/contact_me.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+
+    <!-- SlideBar Acive-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+        <script src="js/scripts.js"></script>
+
+</body>
+
+</html>

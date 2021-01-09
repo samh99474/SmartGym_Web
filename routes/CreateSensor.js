@@ -5,6 +5,8 @@ var request = require('sync-request');
 var app_func = require('./super_global');
 var OM2M_URL = app_func.require_URL();
 //超全域變數
+var create_descripter = require('./CreateDescriptor')
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -14,6 +16,10 @@ router.get('/', function(req, res, next) {
 /* POST users listing. */
 router.post('/', function(req, res, next) {
   create_sensor(req.body.input_postMachine);
+  create_descripter.creat_DESCRIPTOR_container(req.body.input_postMachine,'DATA');
+  create_descripter.creat_DESCRIPTOR_container(req.body.input_postMachine,'ONLINE');
+  create_descripter.creat_DESCRIPTOR_container(req.body.input_postMachine,'DESCRIPTOR');
+  
   res.send('received data='+req.body.input_postMachine);
 });
 

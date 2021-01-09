@@ -6,25 +6,158 @@
 
 /*Ajax om2m*/
 $(document).ready(function () {
+    
+    $.ajax('/GetSensor',   // request url
+        {
+            method: "POST",
+            success: function (data, status, xhr) {// success callback function
+                //動態增加5個td,並且把data陣列的五個值賦給每個td
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i] != "acp_admin") { //去除掉acp_admin
+                        var obj = document.getElementById("select_machine");
+                        obj.add(new Option(data[i], data[i])); //new Option(“文字”,”值”)方法新增選項selection option          
+                    }
+                }
+                /*
+                var myselect = document.getElementById("select_machine")
+                var myselect_index = myselect.selectedIndex; //序號，取當前選中選項的序號
+                var myselect_val = myselect.options[myselect_index].value
+                $(".dataTable_selectMachineTitle").html(myselect_val)
+                */
+            }
+        });  
+    $("#select_machine").change(function () {   //當Select有變化時，跟著變化
+        
+    });    
+
+    $("#submit_TabledeleteSelectMachine").click(function () {  //刪除Table 所選的Sensor
+        $.ajax('/TableDeleteSensor',   // request url
+            {
+                method:"POST",
+                data:{"select_machine": $("#select_machine").val()},
+                success: function (data, status, xhr) {// success callback function
+                    alert($("#select_machine").val()+"刪除成功");
+                    location.reload();//refresh頁面自動刷新
+            },error: function (data, status, xhr) {
+                
+            }
+        });
+    });      
+    
+    $("#submit_TableInquirySelectMachine").click(function () {  //查詢Table 所選的Sensor
+        var Contentinstance = [];
+        var opt = $("#select_machine").val();
+        $(".dataTable_selectMachineTitle").html(opt)
+        $(".dataTable_selectMachineTitle").append("(...查詢中 Querying...)");
+        $(".querying").html("(...查詢中 Querying...)");
+
+        $.ajax('/TableGetSensorDescriptorData',   // request url
+            {
+                method: "POST",
+                data: {
+                    "ONLINE": "ONLINE",
+                    "DESCRIPTOR": "DESCRIPTOR",
+                    "DATA": "DATA",
+                    "select_machine": $("#select_machine").val(),
+                },
+                success: function (data, status, xhr) {// success callback function
+                    for (var i = 0; i < data.length; i++) {
+                        Contentinstance.push(data[i]);
+                    }
+                    TableGetContentinstanceData(Contentinstance);
+                },
+                error: function (data, status, xhr) {
+                    alert("Table查詢失敗");
+                    location.reload();//refresh頁面自動刷新
+                }
+            });
+    });
+    
+    function TableGetContentinstanceData(Contentinstance){
+            
+        var dataSet = [];
+        var dataSet_temp =[];
+        var dataSetTitle = [];
+        var dataSetTitle_temp =[];
+        //alert("MACHINE:"+$("#select_machine").val()+Contentinstance)
+                $.ajax('/TableGetContentinstanceData',   // request url
+                {
+                    method: "POST",
+                    data: {
+                        "select_machine": $("#select_machine").val(),
+                        "Contentinstance": Contentinstance[0],
+                    },
+                    success: function (data, status, xhr) {// success callback function
+                        //console.log(data)
+                        //console.log(Object.keys(data).length)
+                        //console.log(Object.keys(data))
+                        //console.log(Object.keys(data)[0])
+                        //alert(Contentinstance)
+                        
+                        //console.log(data)
+                        //console.log(Object.keys(data).length)
+                        //console.log(Object.keys(data))
+                        //console.log(Object.keys(data)[0])
+                        
+                        for (var j=0;j<data.length;j++)
+                        {
+                            dataSet_temp = [];//清空
+                            dataSetTitle_temp =[];//清空
+                            for (var i = 0; i < Object.keys(data[j]).length; i++) {
+                                key = Object.keys[i];
+        
+                                var obj = {}; // <---- Must Move Obj declaration inside loop
+        
+                                obj['title'] = Object.keys(data[j])[i];
+                                dataSetTitle_temp.push(obj);
+
+                                //dataSetTitle.push(Object.keys(data)[i]);
+                                dataSet_temp.push(Object.values(data[j])[i]);
+                            }
+                            if(dataSetTitle_temp.length >= dataSetTitle.length){
+                              dataSetTitle = dataSetTitle_temp;
+                            }else{      
+    
+                            }
+                            dataSet_temp = [dataSet_temp];//變成二維陣列[0][0]
+                            dataSet = dataSet.concat(dataSet_temp);//[0][1]
+                        }
+
+                        dataDable_showDataSet(dataSet,dataSetTitle);
+
+                        var opt = $("#select_machine").val();
+                        $(".dataTable_selectMachineTitle").html(opt)//查詢完 清空查詢字樣
+                        $(".querying").html("");//查詢完 清空查詢字樣
+
+                    },error: function (data, status, xhr) {
+                        alert("Table查詢失敗");
+                        location.reload();//refresh頁面自動刷新
+                    }
+                });   
+            
+     }
+
+     function dataDable_showDataSet(dataSet,dataSetTitle){
+        console.log("1");
+        if ( $.fn.dataTable.isDataTable( '#dataTable' ) ) {
+            ContentinstanceDataTable.destroy();
+          $('#dataTable').empty(); 
+        }
+        console.log("2");
+        ContentinstanceDataTable = $('#dataTable').DataTable({
+          data: dataSet,
+          columns: dataSetTitle,
+        } );
+      }
+ 
+
+
+
     $("#submit_postMachine").click(function () {
         if ($('#input_postMachine').val().length == 0) {
             alert("請輸欲新增之裝置名稱")
             return
-        } else {
-            if ($('#input_postMachine_descriptor').val().length == 0) {
-                $.ajax('/CreateSensor',   // request url
-                    {
-                        method: "POST",
-                        data: { "input_postMachine": $("#input_postMachine").val() },
-                        success: function (data, status, xhr) {// success callback function
-                            alert("成功新增" + "，" + data + "，" + status+ "，" + xhr)
-                        },
-                        error: function (data, status, xhr) {
-                            alert("失敗新增，可能重複輸入已存在之項目" + "，" + data + "，" + status+ "，" + xhr)
-                        }
-                    });
-            } else {
-                
+        } else {      
                 existing_sensor = new Boolean(false);
                 $.ajax('/CreateSensor',   // request url
                     {
@@ -38,26 +171,6 @@ $(document).ready(function () {
                             //失敗新增Sensor，可能重複輸入已存在之項目
                         }
                     });
-            
-                    $.ajax('/CreateDescriptor',   // request url
-                        {
-                            method: "POST",
-                            data: {
-                                "input_postMachine": $("#input_postMachine").val(),
-                                "input_postMachine_descriptor": $("#input_postMachine_descriptor").val()
-                            },
-                            success: function (data, status, xhr) {// success callback function
-                                if(existing_sensor){
-                                    alert("成功在既有的Sensor新增Descriptor" + "，" + data + "，" + status+ "，" + xhr)
-                                }else{
-                                    alert("成功新增Sensor，並新增Descriptor" + "，" + data + "，" + status+ "，" + xhr)
-                                }
-                            },
-                            error: function (data, status, xhr) {
-                                alert("失敗新增Descriptor" + "，" + data + "，" + status+ "，" + xhr)
-                            }
-                        });
-            }
         }
     });
     $("#submit_deleteMachine").click(function(){
@@ -74,7 +187,7 @@ $(document).ready(function () {
     $("#submit_inquiryMachine_Use").click(function(){
         $.ajax('/GetSensor',   // request url
             {
-                method:"GET",
+                method:"POST",
                 success: function (data, status, xhr) {// success callback function
                     var tableData
                     //動態增加5個td,並且把data陣列的五個值賦給每個td
@@ -89,7 +202,7 @@ $(document).ready(function () {
     $("#submit_inquiryMachine_Data").click(function(){
         $.ajax('/GetSensorDescriptor',   // request url
             {
-                method:"GET",
+                method:"POST",
                 data:{"input_inquiryMachine_Use": $("#input_inquiryMachine_Use").val() },
                 success: function (data, status, xhr) {// success callback function
                     var tableData
@@ -104,7 +217,7 @@ $(document).ready(function () {
     $("#submit_inquiryMachine_Contentinstance").click(function(){
         $.ajax('/GetSensorDescriptorData',   // request url
             {
-                method:"GET",
+                method:"POST",
                 data:{"input_inquiryMachine_descriptor_Use": $("#input_inquiryMachine_descriptor_Use").val(),
                       "input_inquiryMachine_Use": $("#input_inquiryMachine_Use").val() },
                 success: function (data, status, xhr) {// success callback function
@@ -120,7 +233,7 @@ $(document).ready(function () {
     $("#submit_inquiryMachine_Contentinstance_table").click(function(){
         $.ajax('/GetContentinstanceData',   // request url
             {
-                method:"GET",
+                method:"POST",
                 data:{"input_inquiryMachine_descriptor_Use": $("#input_inquiryMachine_descriptor_Use").val(),
                       "input_inquiryMachine_Use": $("#input_inquiryMachine_Use").val(),
                       "input_inquiryMachine_contentinstance_Use":$("#input_inquiryMachine_contentinstance_Use").val() },
@@ -136,7 +249,51 @@ $(document).ready(function () {
                         tableData+="<tr>"+"<td>"+Object.keys(data)[i]+"</td>"+"<td>"+Object.values(data)[i]+"</td>"+"</tr>"
                     }
                     //現在tableData已經生成好了，把他賦值給上面的tbody
-                    $("#tbody1").html(tableData)                     
+                    $("#tbody1").html(tableData)     
+                    
+                    //var dataTable_thead = "";
+                    //var dataTable_tfoot = "";
+                    //var dataTable_tbody ="";
+
+                    var dataSet = [];
+                    var dataSetTitle = [];
+                    //console.log(data)
+                    //console.log(Object.keys(data).length)
+                    //console.log(Object.keys(data))
+                    //console.log(Object.keys(data)[0])
+                    dataTable_thead+="<tr>";
+                    dataTable_tfoot+="<tr>";
+                    dataTable_tbody+="<tr>";
+                    for(var i=0;i< Object.keys(data).length ;i++){
+                        key = Object.keys[i];
+
+                        var obj = {}; // <---- Must Move Obj declaration inside loop
+
+                        obj['title'] = Object.keys(data)[i];
+                        dataSetTitle.push(obj);
+
+                        //dataSetTitle.push(Object.keys(data)[i]);
+                        dataSet.push(Object.values(data)[i]);
+                        
+                        //dataTable_thead+="<th>"+Object.keys(data)[i]+"</th>";
+                        //dataTable_tfoot+="<th>"+Object.keys(data)[i]+"</th>";
+                        //dataTable_tbody+="<td>"+Object.values(data)[i]+"</td>";
+                    }                        
+                    //dataTable_thead+="</tr>";
+                    //dataTable_tfoot+="</tr>";
+                    //dataTable_tbody+="</tr>";
+                    
+                    dataSet = [dataSet];//變成二維陣列[0][0]
+                    dataSet = dataSet.concat(dataSet);//[0][1]
+                    
+                    //現在tableData已經生成好了，把他賦值給上面的tbody
+                    //$("#dataTable_thead").html(dataTable_thead);
+                    //$("#dataTable_tfoot").html(dataTable_tfoot);
+                   
+                    $('#dataTable').DataTable( {
+                        data: dataSet,
+                        columns: dataSetTitle
+                    }); 
             }
         });
     });
@@ -146,7 +303,15 @@ $(document).ready(function () {
             {
                 method:"POST",
                 data:{"input_postMachine_Use": $("#input_postMachine_Use").val(),
-                      "input_postMachine_descriptor_Use": $("#input_postMachine_descriptor_Use").val() },
+                "User_Name": $("#User_Name").val(),
+                "Start_Time": $("#Start_Time").val(),
+                "Date": $("#Date").val(),
+                "End_Time": $("#End_Time").val(),
+                "Weight": $("#Weight").val(),
+                "number_of_set": $("#number_of_set").val(),
+                "Average_speed": $("#Average_speed").val(),
+                "Calories": $("#Calories").val()
+                      },
                       success: function (data, status, xhr) {// success callback function
                         alert("成功新增" + "，" + data + "，" + status+ "，" + xhr)
                     },

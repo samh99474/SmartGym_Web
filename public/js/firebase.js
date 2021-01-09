@@ -17,37 +17,35 @@ firebase.initializeApp({
   // REGISTER DOM ELEMENTS
   const $email = $('#email');
   const $password = $('#password');
+  const $tokenId = $('#tokenId');
   const $btnSignIn = $('#btnSignIn');
   const $btnSignUp = $('#btnSignUp');
   const $btnSignOut = $('#btnSignOut');
   const $signInfo = $('#sign-info');
-  
-
-  var managerdb = [
-  {
-    Manager1: "wujackjack16@gmail.com",
-    Manager2: "t106360120@ntut.org.tw",
-  }
-  ];
+  const $loginForm = $('#loginForm');
 
   // SignIn
   $btnSignIn.click(function(e){
-    auth.signInWithEmailAndPassword($email.val(), $password.val()).then((user) => {
-        window.location.href='member.html';
-        if($email.val()=="wujackjack16@gmail.com" ){
-            window.location.href='admin_sidebar.html';
+    auth.signInWithEmailAndPassword($email.val(), $password.val()).then((response) => {
+      response.user.getIdToken().then((getIdToken) => {
+        $tokenId.val(getIdToken);
+        console.log(getIdToken)
+        $.ajax('/',   // request url
+        {
+            method:"POST",
+            data:{"Email": $email.val()},
+            success: function (data, status, xhr) {// success callback function    
+              $loginForm.submit();                
         }
-      })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-      });
-
-    console.log($email.val())
-    .catch(function(e){
-      $signInfo.html(e.message);
     });
-  });
+       
+      })
+        //window.location.href='admin_sidebar_manageUser.html';
+      })
+      .catch(function(e){
+        $signInfo.html(e.message);
+      });
+    });
 
   // SignUp
   $btnSignUp.click(function(e){
@@ -61,7 +59,7 @@ firebase.initializeApp({
   auth.onAuthStateChanged(function(user){
     if(user) {
       $signInfo.html(`${user.email} is login...`);
-      console.log(user);
+      //console.log(user);
     } else {
       console.log("not logged in");
     }
