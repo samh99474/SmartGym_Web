@@ -23,20 +23,19 @@ firebase.initializeApp({
   const $signInfo = $('#sign-info');
   
 
-  /*var managerdb = [
-    {userName: "wujackjack16@gmail.com",
-    hash: hashPW("wujackjack16@gmail.com", "as123456"),
-    last: ""}
-    ];*/
+  var managerdb = [
+  {
+    Manager1: "wujackjack16@gmail.com",
+    Manager2: "t106360120@ntut.org.tw",
+  }
+  ];
 
   // SignIn
   $btnSignIn.click(function(e){
     auth.signInWithEmailAndPassword($email.val(), $password.val()).then((user) => {
-        window.location.href='admin_sidebar_manageUser.html';
+        window.location.href='member.html';
         if($email.val()=="wujackjack16@gmail.com" ){
-          
-            window.location.href='member.html';
-         
+            window.location.href='admin_sidebar.html';
         }
       })
       .catch((error) => {
