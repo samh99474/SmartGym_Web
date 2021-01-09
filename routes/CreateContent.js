@@ -73,7 +73,7 @@ function creat_DESCRIPTOR_contentInstance(body){
   function post_test_DATA(body)
   {
     //debug用
-    var read_data = fs.readFileSync('D://JeffTaipeiTech2020//i_GYM//test_data.txt', 'utf-8');
+    var read_data = fs.readFileSync('./public/assets/test_data.txt', 'utf-8');
     var data_str_split = read_txt.split_data(read_data);
     //console.log('str_test_split : ' + typeof(str_test_split));
     var input; 
