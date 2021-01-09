@@ -11,7 +11,7 @@ router.post('/', function(req, res, next) {
 
 });
 /* GET home page. */
-router.get('/:fun', function(req, res, next) {
+router.get('/:fun', function(req, res, next) { // ":"是變數 fun，指的是當有接受到任何GET請求都會擷取並執行
   console.log(req.cookies.login);
   console.log(req.params.fun)
 
