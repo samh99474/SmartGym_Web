@@ -113,11 +113,7 @@ function data_content(data_str_split, index_now)
 
     //console.log('input' + input);
 
-<<<<<<< HEAD
-    input.input_postMachine_Use = 'threadmill6';
-=======
     input.input_postMachine_Use = 'bress_push';
->>>>>>> jonathan_login
     input.mydata3 = 'DATA';
 
     return input
