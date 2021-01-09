@@ -9,23 +9,23 @@ var OM2M_URL = app_func.require_URL();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  //console.log(req.query['input_inquiryMachine_Use'])
-  //console.log(req.query['input_inquiryMachine_descriptor_Use'])
+
+});
+
+/* POST users listing. */
+router.post('/', function(req, res, next) {
+  //console.log(req.body['input_inquiryMachine_Use'])
+  //console.log(req.body['input_inquiryMachine_descriptor_Use'])
   //抓SENSOR的URL來找到該SENSOR得DESCRIPTOR
-  var descriptors = read_sensor_all_discriptor(read_sensor_url(req.query['input_inquiryMachine_Use']))
+  var descriptors = read_sensor_all_discriptor(read_sensor_url(req.body['input_inquiryMachine_Use']))
   //console.log(descriptors)
   //抓DESCRIPTOR的URL來找到該DESCRIPTOR得Contentinstance
-  var descriptor_url = get_discriptor_url(req.query['input_inquiryMachine_descriptor_Use'],descriptors)
+  var descriptor_url = get_discriptor_url(req.body['input_inquiryMachine_descriptor_Use'],descriptors)
   //console.log(descriptor_url)
 
   var contentinstance = find_descriptor_all_contentinstance(descriptor_url)
   //console.log(contentinstance)
   res.send(contentinstance);
-});
-
-/* POST users listing. */
-router.post('/', function(req, res, next) {
-    //res.send('received data='+req.body.input_deleteMachine);
 });
 
 function read_all_sensor(){

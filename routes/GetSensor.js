@@ -8,13 +8,14 @@ var OM2M_URL = app_func.require_URL();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  console.log(read_all_sensor())
-  res.send(read_all_sensor());
+
 });
 
 /* POST users listing. */
 router.post('/', function(req, res, next) {
     //res.send('received data='+req.body.input_deleteMachine);
+    console.log(read_all_sensor())
+    res.send(read_all_sensor());
 });
 
 function read_all_sensor(){

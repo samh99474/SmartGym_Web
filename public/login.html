@@ -25,6 +25,8 @@
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
+    <!-- Firebase -->
+    <script src="js/firebase.js"></script>
 
     <!-- Bootstrap CSS/JS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -80,20 +82,18 @@
                 Sign In
               </div>
               <div class="card-body">
-                <div class="form-group">
+                <form action="/server_firebase" method="POST" id="loginForm" >
                   <label for="email" class="form-control-label">Email:</label>
-                  <input type="text" class="form-control" id="email" placeholder="Example@mail.com">
-                </div>
-                <div class="form-group">
+                  <input type="text" class="form-control" name="email" id="email" placeholder="Example@mail.com">
                   <label for="password" class="form-control-label">Password:</label>
-                  <input type="password" class="form-control" id="password" placeholder="Must have at least 7 characters">
-                </div>
+                  <input type="password" class="form-control" name=password id="password" placeholder="Must have at least 7 characters">
+                  <input type="password" class="form-control" name="tokenId" id="tokenId" hidden >            
                 <div class="row mt-5 px-2">
                   <button type="button" class="btn col-md-4 btn-light shadow" id="btnSignIn">Sign In</button>
                   <button type="button" class="btn col-md-4 btn-light shadow" id="btnSignUp">Sign Up</button>
                   <button type="button" class="btn col-md-4 btn-info shadow" id="btnSignOut">Sign Out</button>
                 </div>
-    
+              </form>    
                 <!-- Sign Information -->
                 <div class="card-text text-info mt-3" id="sign-info">No one login...</div>
               </div>

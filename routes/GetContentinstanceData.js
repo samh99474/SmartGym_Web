@@ -9,20 +9,25 @@ var OM2M_URL = app_func.require_URL();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  //console.log(req.query['input_inquiryMachine_Use'])
-  //console.log(req.query['input_inquiryMachine_descriptor_Use'])
-  //console.log(req.query['input_inquiryMachine_contentinstance_Use'])
+
+});
+
+/* POST users listing. */
+router.post('/', function(req, res, next) {
+      //console.log(req.body['input_inquiryMachine_Use'])
+  //console.log(req.body['input_inquiryMachine_descriptor_Use'])
+  //console.log(req.body['input_inquiryMachine_contentinstance_Use'])
   
-  var descriptors = read_sensor_all_discriptor(read_sensor_url(req.query['input_inquiryMachine_Use']))
+  var descriptors = read_sensor_all_discriptor(read_sensor_url(req.body['input_inquiryMachine_Use']))
   //console.log(descriptors)
   
-  var descriptor_url = get_discriptor_url(req.query['input_inquiryMachine_descriptor_Use'],descriptors)
+  var descriptor_url = get_discriptor_url(req.body['input_inquiryMachine_descriptor_Use'],descriptors)
   //console.log(descriptor_url)
   //抓取所有Contentinstances
   var contentinstances = find_descriptor_all_contentinstance(descriptor_url)
   //console.log(contentinstances)
   //指定Contentinstance
-  var table = get_contentinstance_table(req.query['input_inquiryMachine_contentinstance_Use'],contentinstances)
+  var table = get_contentinstance_table(req.body['input_inquiryMachine_contentinstance_Use'],contentinstances)
   var result1 = convert.xml2js(table, {compact: true, spaces: 4});
   //var result2 = convert.xml2js(table, {compact: false, spaces: 4});
   console.log(result1)
@@ -30,6 +35,7 @@ router.get('/', function(req, res, next) {
   //morris
   a = {}
   result1['obj']['str'].forEach(element => a[element["_attributes"]["name"]] = element["_attributes"]["val"] );
+  result1['obj']['int'].forEach(element => a[element["_attributes"]["name"]] = element["_attributes"]["val"] );
   console.log(a);
   /* 我自己的
   for (var i=0;i<result1.length;i++)
@@ -42,11 +48,6 @@ router.get('/', function(req, res, next) {
   //console.log(result1['obj']['str'][0]['_attributes']['val']);
   console.log(dict)*/
   res.send(a);
-});
-
-/* POST users listing. */
-router.post('/', function(req, res, next) {
-    //res.send('received data='+req.body.input_deleteMachine);
 });
 
 function read_all_sensor(){
@@ -139,7 +140,7 @@ function get_contentinstance_table(select,contentinstances)
 
 //console.log(read_all_sensor())
 /*
-var descriptors = read_sensor_all_discriptor(read_sensor_url('machine'))
+var descriptors = read_sensor_all_discriptor(read_sensor_url('threadmill'))
 console.log(descriptors)
 
 var descriptor_url = get_discriptor_url('DATA',descriptors)
@@ -148,16 +149,17 @@ console.log(descriptor_url)
 var contentinstances = find_descriptor_all_contentinstance(descriptor_url)
 //console.log(contentinstances)
 
-var table = get_contentinstance_table('cin_739243557',contentinstances)
+var table = get_contentinstance_table('cin_905408129',contentinstances)
 console.log(table);
 
 var result1 = convert.xml2js(table, {compact: true, spaces: 4});
 var result2 = convert.xml2js(table, {compact: false, spaces: 4});
 a = {}
 result1['obj']['str'].forEach(element => a[element["_attributes"]["name"]] = element["_attributes"]["val"] );
+result1['obj']['int'].forEach(element => a[element["_attributes"]["name"]] = element["_attributes"]["val"] );
 
 console.log(a);
-*/
 
+*/
 
 module.exports = router;
