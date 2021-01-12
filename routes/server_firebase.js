@@ -14,8 +14,8 @@ router.post('/', function(req, res, next) {
   //console.log(req.body.IdToken)
   //console.log(req.body.Email)
   //console.log(res)
-  res.cookie("login",req.body.email)
-  return res.redirect('/admin_sidebar_manageUser')
+  res.cookie("login",req.body.email)    //cookie 紀錄 key & value
+  return res.redirect('/admin_sidebar_manageUser')  //redirect切換到路徑檔案
 });
 
 module.exports = router;
