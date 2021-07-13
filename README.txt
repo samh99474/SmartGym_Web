@@ -1,3 +1,24 @@
+# :clapper: Smart Gym Web 智慧健身房管理網站 #
+# :heart: YouTube - Project Demo
+> 🔗 https://www.youtube.com/watch?v=Mde0BeUzUbE
+
+## :dart: Introduction ##
+## 實際使用之實作技術、語言、平台及函式庫 ##
+<br />為了使網頁讓使用者在不同裝置上體驗順暢，使用 bootstrap 框架輔助開發響應
+式網頁 ( 。使用 JavaScript 是為了方便與後台連接並擴充功能；後端使用
+Express 製作 OM2M 。同時，為了增加系統的使用流暢度，我們用 Ajax 實現動態網
+頁 。
+
+| Command | Description |
+| --- | --- |
+| 網頁開發環境介面 | Visual Studio Code |
+| 網頁前端開發語言 | HTML、 CSS 、 JavaScript |
+| 網頁前端函式庫及框架 | jQuery 、 bootstrap |
+| 網頁測試 RESTful API | Postman |
+| 物聯網平台標準架構 | OneM2M |
+| 網頁後端 | Node.js 、 Express |
+| 登入登出註冊 | Firebase 、 cookie |
+
 ==========================要求:================================
 
 安裝執行教學網站:https://seanacnet.com/node-js/node-js-express-insert/
